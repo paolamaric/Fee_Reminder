@@ -38,30 +38,18 @@
                             </div>
                         </div>
                 </div>
-                <div id="layoutAuthentication_footer" _ngcontent-ghc-c106="">
-                    <div class="footer mt-auto footer-dark"  _ngcontent-ghc-c101="">
-                        <div class="container-fluid"  _ngcontent-ghc-c101="">
-                            <div class="row"  _ngcontent-ghc-c101="">
-                                <div class="col-md-6 small"  _ngcontent-ghc-c101="">
-                                    Copyright © Your Website 2020 <br>
-                                    Privacy Policy <br>
-                                    Terms and conditions   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div id="layoutAuthentication_footer" _ngcontent-ghc-c106="">
+      <div class="footer mt-auto footer-dark"  _ngcontent-ghc-c101="">
+        <div class="container-fluid"  _ngcontent-ghc-c101="">
+          <div class="row"  _ngcontent-ghc-c101="">
+            <div class="col-md-6 small"  _ngcontent-ghc-c101="">
+              Copyright © Your Website 2020 <br>
+              Privacy Policy <br>
+              Terms and conditions   
             </div>
-
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 </template>
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'Registration',
-  components: {
-    HelloWorld
-  }
-}
-</script>

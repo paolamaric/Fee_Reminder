@@ -35,23 +35,12 @@
                 <div class="mt-5">
                   <i class="fas fa-4x fa-heart text-primary mb-4"></i>
                   <h3 class="h4 mb-2">Zaduženje po članu tima</h3>
-                  <p class="text-muted mb-0">Moje ime je Paola Marić i ja sam zadužena za html/css/js za hosta</p>
+                  <p class="text-muted mb-0">Anamarija Jozić - login/registracija i početna stranica <br> 
+                  Paola Marić - html/css/js za hosta <br>
+                  Marta Pokorni - html/css/js za usera</p>
                 </div>
               </div>
             </div>
           </div>
-
   </div> 
 </template>
-
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'About',
-  components: {
-    HelloWorld
-  }
-}
-</script>
