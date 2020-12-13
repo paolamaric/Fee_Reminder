@@ -9,8 +9,10 @@
                                             <div _ngcontent-ghc-c118="">
                                                 <div class="h3 text-primary font-weight-300" _ngcontent-ghc-c118=""> Create </div>
                                                 <i class="fas fa-4x fa-users text-primary mb-4" ></i>
+                                                <div id="registerclient">
                                                 <div class="col-lg-6 align-self-baseline">
-                                                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="">Register as a client</a>
+                                                    <a class="btn btn-primary btn-xl js-scroll-trigger"  href="../registrationclient">Register as a client</a>
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>
