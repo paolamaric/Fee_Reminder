@@ -1,52 +1,55 @@
 <template>
-    <div class="vue-tempalte">
-        <form>
-            <h3>Sign In</h3>
-
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" />
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
-            </div>
-
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
-
-            <p class="forgot-password text-right mt-2 mb-4">
-                <router-link to="/forgot-password">Forgot password ?</router-link>
-            </p>
-
-            <div class="social-icons">
-                <ul>
-                    <li><a href="#"><i class="fa fa-google"></i></a></li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-            </div>
-
-        </form>
+  <form>
+    <p class="h4 text-center mb-4">Sign in</p>
+    <label for="defaultFormLoginEmailEx" class="grey-text">Your email</label>
+    <input 
+        type="email" 
+        v-model="username"
+        id="defaultFormLoginEmailEx" 
+        class="form-control"/>
+    <br/>
+    <label for="defaultFormLoginPasswordEx" class="grey-text">Your password</label>
+    <input 
+        type="password" 
+        v-model="password"
+        id="defaultFormLoginPasswordEx" 
+        class="form-control"/>
+    <div class="text-center mt-4">
+      <button class="btn btn-indigo" type="button" @click="login()" >Login</button>
     </div>
+  </form>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {}
-        }
-    }
-</script>
-
-<script>
+import { firebase } from '@/firebase.js';
     export default {
         name: "Login",
+        data() {
+            return {
+                username: "",
+                password: "",
+            };
+        },
         methods: {
             login () {
-                console.log("login...")
-            }
-        }
+                console.log("login..." + this.username);
+
+                firebase
+                .auth()
+                .signInWithEmailAndPassword(this.username, this.password)
+                .then((result) => {
+                    console.log("Uspješna prijava", result);
+
+                    this.$router.replace({name: "Home"});
+
+                })
+                .catch(function(e) {
+                    console.error('Greška', e);
+                });
+
+            },
+            
+        },
     }
 </script>
 

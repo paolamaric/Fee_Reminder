@@ -7,13 +7,34 @@
 
 <script>
   import FeeNavbar from './components/navbar.vue';
+  import { firebase } from '@/firebase';
 
+  firebase.auth().onAuthStateChanged ((user) => {
+    if (user) {
+      console.log("***", user.email);
+    }
+    else {
+      console.log("No user");
+    }
+  });
+
+ 
   export default {
     name:'App',
     components: {
       FeeNavbar
+    },
+  
+  methods: {
+    logout() {
+      firebase.auth().signOut();
     }
-  };
+  }
+  }
+
+  
+
+  
 </script>
 
 <style lang="scss">
