@@ -139,6 +139,12 @@ import store from '@/store.js';
                 .signInWithEmailAndPassword(this.email, this.password)
                 .then((result) => {
                     console.log("Uspješna prijava", result);
+<<<<<<< HEAD
+=======
+                    store.currentUser = this.email;
+                    this.$router.replace({name: 'Home'});
+
+>>>>>>> f72722b5068206c3f178987aa665124d47dae30b
                 })
                 .catch(function(e) {
                     console.error('Greška', e);

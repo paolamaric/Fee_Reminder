@@ -13,8 +13,13 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+<<<<<<< HEAD
   let db = firebase.firestore();
 
   export {
       firebase, db
+=======
+  export {
+      firebase,
+>>>>>>> f72722b5068206c3f178987aa665124d47dae30b
   };
