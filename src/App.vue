@@ -12,34 +12,17 @@
   import router from '@/router';
 
   firebase.auth().onAuthStateChanged ((user) => {
-<<<<<<< HEAD
-    const currentRoute = router.currentRoute;
-
-    if (user) {
-      console.log("*** User", user.email);
-      store.currentUser = user.email;
-
-      if(!currentRoute.meta.needsUser){
-      router.push({ name: 'home' });
-      } 
-    } 
-=======
     if (user) {
       console.log("***", user.email);
       store.currentUser = user.email;
       } 
->>>>>>> f72722b5068206c3f178987aa665124d47dae30b
     else {
-      console.log('No user');
-      store.currentUser = user.email;
+    //   console.log('No user');
+    //   store.currentUser = user.email;
 
-<<<<<<< HEAD
-    if(currentRoute.meta.needsUser){
-=======
-    if(router.name !== 'Login'){
->>>>>>> f72722b5068206c3f178987aa665124d47dae30b
-      router.push({ name: 'Login' });
-    }
+    // if(router.name !== 'Login'){
+    //   router.push({ name: 'Login' });
+    // }
       // store.currentUser = 0;
     }
     // let userName = store.currentUser;

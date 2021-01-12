@@ -122,6 +122,12 @@
 <script>
 import { firebase } from '@/firebase.js';
 import store from '@/store.js';
+    
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        window.location = 'HomeClient';
+    }});
+
     export default {
         name: "Login",
         data() {
@@ -139,12 +145,9 @@ import store from '@/store.js';
                 .signInWithEmailAndPassword(this.email, this.password)
                 .then((result) => {
                     console.log("Uspješna prijava", result);
-<<<<<<< HEAD
-=======
                     store.currentUser = this.email;
-                    this.$router.replace({name: 'Home'});
-
->>>>>>> f72722b5068206c3f178987aa665124d47dae30b
+                    // this.$router.replace({name: 'Home'});
+                    window.location = '/';
                 })
                 .catch(function(e) {
                     console.error('Greška', e);
