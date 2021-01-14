@@ -50,7 +50,7 @@
             </div>
             <div class="col-2 p-0">
                 <div class="col-12">
-                    <a href="" class="card1"> 
+                    <a href="" class="card1" data-toggle="modal" data-target="#Category"> 
                         <span>
                             <span>
                                 <span>
@@ -97,10 +97,13 @@
                 </div>
             </div>
         </div>
+        
         <div class="modal fade" id="InvoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel"><b>Create New Invoice</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                         <h5 class="modal-title" id="exampleModalLabel">Create New Invoice</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -137,6 +140,82 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                     </div>
+                    </div>
+                    </div>
+                    </div>
+
+ <div class="modal fade" id="Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel"><b>Create   Category</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12 well">
+                                <form>
+<div class="form-group mt-3 row">
+    <label class="col-form-label col-sm-3" for="passLab">Category: </label>
+<div class="col-sm-9"> 
+  <button class="col-form-label col-sm-3" for="passLab" type="button" minlength=6 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Choose Category
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+    <a class="dropdown-item" href="#">Membership fees</a>
+    <a class="dropdown-item" href="#">Utilities</a>
+    <a class="dropdown-item" href="#">Loans</a>
+    <a class="dropdown-item" href="#">Other</a>
+  </div>
+</div>
+
+  </div>
+
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="passLab">Category name: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="passLab" type="password" minlength=6 v-model="password" placeholder="e.g. Odbojkaški klub" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-3 row">
+    <label class="col-form-label col-sm-3" for="passLab">Repeat: </label>
+<div class="col-sm-9"> 
+  <button class="col-form-label col-sm-3" for="passLab" type="button" minlength=6 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Choose Category
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+    <a class="dropdown-item" href="#">One time (Doesn't repeat)</a>
+    <a class="dropdown-item" href="#">Monthly</a>
+    <a class="dropdown-item" href="#">Quarterly (Every 3 months)</a>
+    <a class="dropdown-item" href="#">Yearly</a>
+  </div>
+</div>
+
+  </div>
+                                <button type="button" class="btn btn-primary btn-sm mt-3">Add Category</button>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+
+                    </div>
+
+
+
+
+</template>
+
+
                 </div>
             </div>
         </div> 

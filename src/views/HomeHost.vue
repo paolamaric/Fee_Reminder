@@ -1,8 +1,9 @@
 <template>
-      <div class="container">
+<div>
+      <div class="container-fluid">
         <div class="row">
           <div class="col-4">
-                 <a href="" class="card2"> 
+                 <a href="" class="card2" data-toggle="modal" data-target="#Invoice"> 
                   <span>
                     <span>
                       <span>
@@ -16,7 +17,7 @@
                  </a>
             </div>
             <div class="col-4">
-                 <a href="" class="card2"> 
+                 <a href="" class="card2" data-toggle="modal" data-target="#Clients"> 
                   <span>
                     <span>
                       <span>
@@ -45,6 +46,138 @@
             </div>
         </div> 
     </div>
+
+          <div class="modal fade" id="Invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel"><b>Create New Invoice</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12 well">
+                                <form>
+                                  <div id="app">
+                                    <mdb-container>
+                                       <mdb-row>
+                                           <mdb-col>
+                                              <b>INV001</b>
+                                                <br>Buisness info<br>
+                                           </mdb-col>
+                                           <mdb-col>
+                                               <b>Due on receipt</b><br>
+                                         <div id="app">
+                                             <input type="date" v-model="date">
+                                          </div>
+                                            </mdb-col>
+                                              </mdb-row>
+                                     </mdb-container>
+                                        </div>
+                                  
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3" for="emailLab" >To: </label>
+                                    <div class="col-sm-9">
+                                        <input type="email" id="emailLab" v-model="email" placeholder="Enter Client Name Here..." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="passLab">Bill name: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="passLab" type="password" minlength=6 v-model="password" placeholder="e.g. Membership fee" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="passLab">Bill amount: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="passLab" type="password" minlength=6 v-model="password" placeholder="e.g. 150,00 kn" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
+                                    
+                                </div>
+                                <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
+                                <button type="button" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+<div class="modal fade" id="Clients" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel"><b>Add New Client</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        
+                        </button>
+                    </div>
+                  <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12 well">
+                                <form>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3" for="emailLab">Client Name: </label>
+                                    <div class="col-sm-9">
+                                        <input type="cname" id="cname" v-model="cname" placeholder="e.g. John Deer" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="passLab">Email: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="email" type="email" minlength=6 v-model="email" placeholder="e.g. jdeer@gmail.com" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="passLab">Phone: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="phone" type="phone" minlength=6 v-model="phone" placeholder="e.g. +3851234562" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="passLab">Address: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="address" type="adress" minlength=6 v-model="address" placeholder="e.g. Wall Street" class="form-control">
+                                    </div>
+                                </div>
+                                
+                                <button type="button" class="btn btn-primary btn-sm mt-3">Add Client</button>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+
+</div>
+</template>
+
+<script>
+  import {mdbContainer, mdbRow, mdbCol} from 'mdbvue';
+  export default {
+    components: {
+      mdbContainer,
+      mdbRow,
+      mdbCol
+    }
+  }
+
+</script>
+
 </template>
 
 <style lang="scss">
