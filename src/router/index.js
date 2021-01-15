@@ -48,7 +48,18 @@ const routes = [
     path: '/ListOfUpcomingBills',
     name: 'ListOfUpcomingBills',
     component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ListOfUpcomingBills.vue')
-  }
+  },
+  {
+    path: '/list',
+    name: 'List',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ListOfUpcomingBills.vue'),
+    meta: {
+      requiresAuth: true
+      }
+  },
 ]
 
 const router = new VueRouter({

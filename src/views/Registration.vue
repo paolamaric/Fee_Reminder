@@ -199,29 +199,35 @@ export default {
 	name: "Registration",
 	data() {
 		return {
-			name: "",
-			email: "",
-			adress: "",
-			city: "",
-            zip: "",
-            OIB: "",
-			password: "",
-			passwordRepeat: "",
-			};
-		},
+            registerForm: {
+                name: "",
+                email: "",
+                adress: "",
+                city: "",
+                zip: "",
+                OIB: "",
+                password: "",
+                passwordRepeat: "",
+            }	
+		};
+	},
 	methods: {
-		signup() {
-			firebase
-			.auth()
-			.createUserWithEmailAndPassword(this.email, this.password)
-			.then(function() {
-				console.log('Uspjesna registracija');
-			})
-			.catch(function(error){
-				console.error("Došlo je do greške", error);
-			})
-			console.log('Nastavak');
-			},
+		signup(isHost) {
+			// firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
+			// 	console.log('Uspjesna registracija');
+			// })
+			// .catch(function(error){
+			// 	console.error("Došlo je do greške", error);
+			// })
+			// console.log('Nastavak');
+            // },
+            this.$store.dispatch('signup', {
+                name: this.registerForm.name,
+                email: this.registerForm.email,
+                password: this.registerForm.password,
+                isHost: isHost
+                })
+            }
 		},
 	};
 </script>

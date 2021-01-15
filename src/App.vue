@@ -5,51 +5,6 @@
   </div>
 </template>
 
-<script>
-  import store from '@/store';
-  import FeeNavbar from './components/navbar.vue';
-  import { firebase } from '@/firebase';
-  import router from '@/router';
-
-  firebase.auth().onAuthStateChanged ((user) => {
-    if (user) {
-      console.log("***", user.email);
-      store.currentUser = user.email;
-      } 
-    else {
-    //   console.log('No user');
-    //   store.currentUser = user.email;
-
-    // if(router.name !== 'Login'){
-    //   router.push({ name: 'Login' });
-    // }
-      // store.currentUser = 0;
-    }
-    // let userName = store.currentUser;
-    // console.log("userName = " + userName);
-  });
-
-
-  export default {
-    name:'App',
-    components: {
-      FeeNavbar
-    },
-    data () {
-      return {
-        store,
-      };
-    },
-    methods: {
-      logout() {
-        firebase.auth().signOut().then(() => {
-          this.$router.replace({ name: 'Login' });
-      });
-    }
-    }
-  }
-</script>
-
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -72,3 +27,43 @@
   }
 }
 </style>
+
+<script>
+  import store from '@/store';
+  import FeeNavbar from './components/navbar.vue';
+  import { firebase } from '@/firebase';
+  import router from '@/router';
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log("*", user.email);
+      store.currentUser = user.email;
+      } 
+    // else {
+    //   console.log('No user');
+    //   store.currentUser = null;
+    //   if(router.name !== 'Login'){
+    //     // router.push({ name: 'Login' });
+    //     window.location = 'about';
+    //     }
+      // }
+    });
+  export default {
+    name:'App',
+    components: {
+      FeeNavbar
+      },
+    data () {
+      return {
+        store,
+        };
+      },
+    methods: {
+      logout() {
+        firebase.auth().signOut().then(() => {
+          this.$router.replace({ name: 'Login' });
+          });
+        }
+      }
+    }
+</script>

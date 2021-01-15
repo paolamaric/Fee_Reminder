@@ -34,7 +34,7 @@
             </div>
             <div class="col-2 p-0">
                 <div class="col-12">
-                    <a href="" class="card1"> 
+                    <a href="/list" class="card1"> 
                         <span>
                             <span>
                                 <span>

@@ -27,14 +27,13 @@
 
 <script>
 import moment from 'moment';
-
 export default {
     name: 'List',
     props: ['Invoices'],
     computed: {
         postedFromNow () {
             return moment(this.Invoices.time).fromNow();
-        }
-    },
-}
+            }
+        },
+    }
 </script>

@@ -15,6 +15,9 @@
           <router-link  to="/login" class="nav-link">Login</router-link>
         </li>
         <li v-if="store.currentUser" class="nav-item" >
+          <router-link to="/list" class="nav-link">Bills</router-link>
+        </li>
+        <li v-if="store.currentUser" class="nav-item" >
           <a href="#" @click="logout()" to="/logout" class="nav-link">Logout</a>
         </li>
       </ul>

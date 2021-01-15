@@ -37,13 +37,13 @@
                               <div class="form-group row">
                                 <label class="col-form-label col-sm-2" for="emailLab">Email: </label>
                                   <div class="col-sm-10">
-                                    <input type="email" id="emailLab" v-model="email" placeholder="Enter Email Address Here..." class="form-control">
+                                    <input type="email" id="emailLab" v-model.trim="email" placeholder="Enter Email Address Here..." class="form-control">
                                   </div>
                               </div>
                               <div class="form-group mt-3 row">
                                 <label class="col-form-label col-sm-2" for="passLab">Password: </label>
                                   <div class="col-sm-10"> 
-                                    <input id="passLab" type="password" minlength=6 v-model="password" placeholder="Enter Your Password" class="form-control">
+                                    <input id="passLab" type="password" minlength=6 v-model.trim="password" placeholder="Enter Your Password" class="form-control">
                                   </div>
                               </div>
                               <button type="button" @click="login()" class="btn btn-primary btn-sm mt-3">Login</button>
@@ -96,13 +96,13 @@
                               <div class="form-group row">
                                 <label class="col-form-label col-sm-2" for="emailLab">Email: </label>
                                 <div class="col-sm-10">
-                                  <input type="email" id="emailLab" v-model="email" placeholder="Enter Email Address Here..." class="form-control">
+                                  <input type="email" id="emailLab" v-model.trim="loginForm.email" placeholder="Enter Email Address Here..." class="form-control">
                                 </div>
                               </div>
                               <div class="form-group mt-3 row">
                                 <label class="col-form-label col-sm-2" for="passLab">Password: </label>
                                 <div class="col-sm-10"> 
-                                  <input id="passLab" type="password" minlength=6 v-model="password" placeholder="Enter Your Password" class="form-control">
+                                  <input id="passLab" type="password" minlength=6 v-model.trim="loginForm.password" placeholder="Enter Your Password" class="form-control">
                                 </div>
                               </div>
                               <button type="button" @click="login()" class="btn btn-primary btn-sm mt-3">Login</button>
@@ -123,39 +123,50 @@
 import { firebase } from '@/firebase.js';
 import store from '@/store.js';
     
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        window.location = 'HomeClient';
-    }});
+// firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//         window.location = 'HomeClient';
+//     }});
 
     export default {
         name: "Login",
         data() {
             return {
-                email: "",
-                password: "",
+                loginForm: {
+                    email: "",
+                    password: "",
+                }
             };
         },
         methods: {
-            login () {
-                console.log("login... " + this.email);
-
-                firebase
-                .auth()
-                .signInWithEmailAndPassword(this.email, this.password)
-                .then((result) => {
-                    console.log("Uspješna prijava", result);
-                    store.currentUser = this.email;
-                    // this.$router.replace({name: 'Home'});
-                    window.location = '/';
-                })
-                .catch(function(e) {
-                    console.error('Greška', e);
+            login() {
+            console.log(this.loginForm);
+            console.log(this.email);
+            this.$store.dispatch('Login', { 
+                email: this.email,
+                password: this.password
                 });
-
-            },
-            
+            }
         },
+            // login () {
+            //     console.log("login... " + this.email);
+
+            //     firebase
+            //     .auth()
+            //     .signInWithEmailAndPassword(this.email, this.password)
+            //     .then((result) => {
+            //         console.log("Uspješna prijava", result);
+            //         store.currentUser = this.email;
+            //         // this.$router.replace({name: 'Home'});
+            //         window.location = '/';
+            //     })
+            //     .catch(function(e) {
+            //         console.error('Greška', e);
+            //     });
+
+            // },
+            
+        // },
     }
 </script>
 
