@@ -37,13 +37,13 @@
                               <div class="form-group row">
                                 <label class="col-form-label col-sm-2" for="emailLab">Email: </label>
                                   <div class="col-sm-10">
-                                    <input type="email" id="emailLab" v-model.trim="email" placeholder="Enter Email Address Here..." class="form-control">
+                                    <input type="email" id="emailLab" v-model.trim="loginForm.email" placeholder="Enter Email Address Here..." class="form-control">
                                   </div>
                               </div>
                               <div class="form-group mt-3 row">
                                 <label class="col-form-label col-sm-2" for="passLab">Password: </label>
                                   <div class="col-sm-10"> 
-                                    <input id="passLab" type="password" minlength=6 v-model.trim="password" placeholder="Enter Your Password" class="form-control">
+                                    <input id="passLab" type="password" minlength=6 v-model.trim="loginForm.password" placeholder="Enter Your Password" class="form-control">
                                   </div>
                               </div>
                               <button type="button" @click="login()" class="btn btn-primary btn-sm mt-3">Login</button>
@@ -142,7 +142,7 @@ import store from '@/store.js';
             login() {
             console.log(this.loginForm);
             console.log(this.email);
-            this.$store.dispatch('Login', { 
+            this.$store.dispatch('login', { 
                 email: this.email,
                 password: this.password
                 });
@@ -169,4 +169,3 @@ import store from '@/store.js';
         // },
     }
 </script>
-

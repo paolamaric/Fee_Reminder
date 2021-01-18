@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="Invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="InvoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -118,7 +118,7 @@
                                         <mdb-col>
                                           <b>Due on receipt</b><br>
                                           <div id="app">
-                                             <input type="date" v-model="date">
+                                             <input type="date" id="DueDate" v-model="DueDate">
                                           </div>
                                         </mdb-col>
                                       </mdb-row>
@@ -157,7 +157,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal fade" id="Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -200,10 +200,11 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                     </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
+                </div> 
+ </div> 
+     </div>
 </template>
 
 <style lang="scss">
@@ -410,6 +411,7 @@ export default {
           })
           .then ((doc)=>{
               console.log("Spremljeno ", doc);
+              this.DueDate = "";
               this.ClientName = "";
               this.BillName = "";
               this.BillAmount = "";

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '/'
+import Home from '../views/Home.vue'
 import Home1 from '../views/HomeClient.vue'
 import Home2 from '../views/HomeHost.vue'
-
 
 Vue.use(VueRouter)
 
@@ -44,10 +43,11 @@ const routes = [
     name: 'Login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
   },
+  
   {
-    path: '/ListOfUpcomingBills',
-    name: 'ListOfUpcomingBills',
-    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ListOfUpcomingBills.vue')
+    path: '/ClientsHost',
+    name: 'ClientsHost',
+     component: () => import(/* webpackChunkName: "about" */ '../views/ClientsHost.vue'),
   },
   {
     path: '/list',
@@ -60,6 +60,7 @@ const routes = [
       requiresAuth: true
       }
   },
+  
 ]
 
 const router = new VueRouter({

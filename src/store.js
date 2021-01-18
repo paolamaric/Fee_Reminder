@@ -22,18 +22,36 @@ export default new Vuex.Store({
             },
         async signup({ dispatch }, form) {
             const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password);
-            await fb.usersCollection.doc(user.uid).set({
-                name: form.name,
-                isHost: form.isHost
-                }).then(async function() {
-                    await dispatch('fetchUserProfile', user);
-                    })
+            if (form.isHost) {
+                await fb.usersCollection.doc(user.uid).set({
+                    name: form.name,
+                    adress: form.adress,
+                    city: form.city,
+                    zip: form.zip,
+                    OIB: form.OIB,
+                    isHost: form.isHost
+                    }).then(async function() {
+                        await dispatch('fetchUserProfile', user);
+                        }) 
+                }
+            else {
+                await fb.usersCollection.doc(user.uid).set({
+                    name: form.name,
+                    adress: form.adress,
+                    city: form.city,
+                    zip: form.zip,
+                    isHost: form.isHost
+                    }).then(async function() {
+                        await dispatch('fetchUserProfile', user);
+                        })
+                }
             },
+            
         async fetchUserProfile({ commit }, user) {
             const userProfile = fb.usersCollection.doc(user.uid).get();
             commit('setUserProfile', userProfile.data);
             if (router.currentRoute.path === '/login' || router.currentRoute.path === '/registration') {
-                window.location = '/';
+                window.location = '/HomeClient';
                 // router.push('/');
                 }
             }
