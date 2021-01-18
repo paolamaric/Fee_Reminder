@@ -1,26 +1,33 @@
 <template>
-    <div class="cointainer-fluid">
+    <div class="cointainer">
+    <h2 class="my-4"> List of Upcoming Bills </h2>
         <div class="row my-4"> 
-            <div class="col-12">
-                <h2> List of Upcoming Bills </h2>
-                <tr class="col-3">
-                    <th> Invoice ID </th>
-                    <td> {{Invoices.id}} </td>
-                </tr>
-                <tr class="col-3">
-                    <th> Client Name </th>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Invoice ID
+                            
+                        </th>
+                        <th scope="col">
+                            Client Name
+                        </th>
+                        <th scope="col">
+                            Bill Name
+                        </th>
+                        <th scope="col">
+                            Bill Amount
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr :key="item.key" v-for="item in db.collection('Invoices')">{{List}}</tr>
+                </tbody>
+                    <!-- <td> {{Invoices.DueDate}} </td>
                     <td> {{Invoices.ClientName}} </td>
-                </tr>
-                <tr class="col-3">
-                    <th> Bill Name </th>
                     <td> {{Invoices.BillName}} </td>
-                </tr>
-                <tr class="col-3">
-                    <th> Bill Amount </th>
-                    <td> {{Invoices.BillAmount}} </td>
-                {{PostedFromNow}} 
-                </tr>
-            </div>
+                    <td> {{Invoices.BillAmount}} </td>  -->
+            </table>
         </div>
     </div>
 </template>

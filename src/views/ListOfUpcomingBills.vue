@@ -6,7 +6,7 @@
                 <thead>
                     <tr>
                         <th scope="col">
-                            Invoice ID
+                            Due Date
                         </th>
                         <th scope="col">
                             Client Name
@@ -20,13 +20,21 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <tr :key="invoice.key" v-for="invoice in invoices">
+                        <td>
+                            {{invoice.DueDate}}
+                        </td>
+                        <td>
+                            {{invoice.ClientName}}
+                        </td>
+                        <td>
+                            {{invoice.BillName}}
+                        </td>
+                        <td>
+                            {{invoice.BillAmount}}
+                        </td>
+                    </tr>
                 </tbody>
-                    <!-- <td> {{Invoices.id}} </td> -->
-                    <!-- <td> {{Invoices.ClientName}} </td> -->
-                    <!-- <td> {{Invoices.BillName}} </td> -->
-                    <!-- <td> {{Invoices.BillAmount}} </td>
-                {{PostedFromNow}}  -->
             </table>
         </div>
     </div>
@@ -58,7 +66,10 @@
 import moment from 'moment';
 import store from '@/store';
 // import List from '@/components/List.vue';
+import { firebase } from '@/firebase';
 import { db } from '@/firebase';
+import { invoiceCollection } from '@/firebase';
+
 export default {
     name:'ListOfUpcomingBills',
     props: ['Invoices'],
@@ -69,7 +80,8 @@ export default {
     //     },  
     data () {
         return {
-            List: [],
+            invoices: [],
+            DueDate:'',
             ClientName:'',
             BillName:'',
             BillAmount:'',
@@ -77,26 +89,39 @@ export default {
         },
     mounted () {
         this.getInvoices();
-        db.collection("Invoices")
-            .orderBy("posted_at" , "desc")
-            .limit(20)
-            .get()
-            .then((query) => {
-                this.List = [];
-                query.forEach((doc) => {
-                const data = doc.data();
-                this.List.push({
-                    id: doc.id,
-                    time: data.posted_at,
-                    ClientName: data.ClientName,
-                    BillName: data.BillName,
-                    BillAmount: data.BillAmount
-                    })
-                });
-            })
+        // firebase.invoiceCollection
+        //     .orderBy("posted_at" , "desc")
+        //     .limit(20)
+        //     .get()
+        //     .then((query) => {
+        //         this.List = [];
+        //         query.forEach((doc) => {
+        //         const data = doc.data();
+        //         this.List.push({
+        //             Date: data.DueDate,
+        //             ClientName: data.ClientName,
+        //             BillName: data.BillName,
+        //             BillAmount: data.BillAmount
+        //             })
+        //         });
+        //     })
         },
     methods: {
         getInvoices () {
+            let invoices = [];
+            invoiceCollection.get().then((results) => {
+                results.forEach((doc) => {
+                    let data = doc.data();
+                    let invoice = {
+                        id: doc.id,
+                        DueDate: data.Date,
+                        ClientName: data.Client,
+                        BillName: data.Bill,
+                        BillAmount: data.Amount                    
+                        }
+                    this.invoices.push(invoice);
+                    })
+                })
             console.log("Firebase dohvat")
             },
         // postNewInvoice () {

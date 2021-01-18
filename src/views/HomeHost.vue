@@ -43,11 +43,119 @@
         </div>
       </div> 
     </div>
+<<<<<<< HEAD
+=======
+          <div class="modal fade" id="Invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <h3 class="modal-title" id="exampleModalLabel"><b>Create New Invoice</b></h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12 well">
+                                <form>
+                                  <div id="app">
+                                    <mdb-container>
+                                      <mdb-row>
+                                        <mdb-col>
+                                          <!-- <b> {{Invoices2.id}} </b> -->
+                                          <br>Buisness info<br>
+                                        </mdb-col>
+                                        <mdb-col>
+                                          <b>Due on receipt</b><br>
+                                          <div id="app">
+                                             <input type="date" id="DueDate" v-model="DueDate">
+                                          </div>
+                                        </mdb-col>
+                                      </mdb-row>
+                                    </mdb-container>
+                                  </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="ClientName" v-model="ClientName" placeholder="Enter Client Name Here..." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="BillName">Bill name: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="BillName" type="text" v-model="BillName" placeholder="e.g. Membership fee" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="BillAmount">Bill amount: </label>
+                                    <div class="col-sm-9"> 
+                                        <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
+                                </div>
+                                <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
+                                <button type="button" @click="postNewInvoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="Clients" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLabel"><b>Add New Client</b></h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-lg-12 well">
+                    <form>
+                      <div class="form-group row">
+                        <label class="col-form-label col-sm-3" for="emailLab">Client Name: </label>
+                          <div class="col-sm-9">
+                            <input type="cname" id="cname" v-model="cname" placeholder="e.g. John Deer" class="form-control">
+                          </div>
+                      </div>
+                      <div class="form-group mt-3 row">
+                        <label class="col-form-label col-sm-3" for="passLab">Email: </label>
+                          <div class="col-sm-9"> 
+                            <input id="email" type="email" minlength=6 v-model="email" placeholder="e.g. jdeer@gmail.com" class="form-control">
+                          </div>
+                      </div>
+                      <div class="form-group mt-3 row">
+                        <label class="col-form-label col-sm-3" for="passLab">Phone: </label>
+                          <div class="col-sm-9"> 
+                            <input id="phone" type="phone" minlength=6 v-model="phone" placeholder="e.g. +3851234562" class="form-control">
+                          </div>
+                      </div>
+                      <div class="form-group mt-3 row">
+                        <label class="col-form-label col-sm-3" for="passLab">Address: </label>
+                          <div class="col-sm-9"> 
+                            <input id="address" type="adress" minlength=6 v-model="address" placeholder="e.g. Wall Street" class="form-control">
+                          </div>
+                      </div>
+                      <button type="button" class="btn btn-primary btn-sm mt-3">Add Client</button>
+                    </form> 
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+    </div>
+>>>>>>> 6662b6ffadb303ef542f1e32e169d8fec6d38a6e
   </div>
 </template>
 
 <script>
-import {mdbContainer, mdbRow, mdbCol} from 'mdbvue';
 import moment from 'moment';
 import store from '@/store';
 import { db } from '@/firebase';
@@ -62,60 +170,70 @@ import { db } from '@/firebase';
 
 export default {
     name:'HomeHost',
-    props: ['Invoices2'],
+    props: ['Invoices'],
     components: {
     },
     data () {
       return {
-        ClientName2:'',
-        BillName2:'',
-        BillAmount2:'',
+        DueDate:'',
+        ClientName:'',
+        BillName:'',
+        BillAmount:'',
       };
     },
     mounted () {
-        this.getInvoices2();
+        this.getInvoices();
 
-        db.collection("Invoices2")
+        db.collection("Invoices")
             .orderBy("posted_at" , "desc")
             .limit(20)
             .get()
             .then((query) => {
-                this.Invoices2 = [];
+                this.Invoices = [];
                 query.forEach((doc) => {
 
                 const data = doc.data();
 
-                this.Invoices2.push({
+                this.Invoices.push({
                     id: doc.id,
+                    Date: data.DueDate,
                     time: data.posted_at,
-                    ClientName: data.ClientName2,
-                    BillName: data.BillName2,
-                    BillAmount: data.BillAmount2
+                    ClientName: data.ClientName,
+                    BillName: data.BillName,
+                    BillAmount: data.BillAmount
                 })
             });
         })
     },
     methods: {
       postNewInvoice () {
-          const ClientName2= this.ClientName2
-          const BillName2= this.BillName2
-          const BillAmount2 = this.BillAmount2
+          const DueDate= this.DueDate
+          const ClientName= this.ClientName
+          const BillName= this.BillName
+          const BillAmount = this.BillAmount
 
-          db.collection("Invoices2").add({
-              Client: ClientName2,
-              Bill: BillName2,
-              Amount: BillAmount2,
+          db.collection("Invoices").add({
+              Date: DueDate,
+              Client: ClientName,
+              Bill: BillName,
+              Amount: BillAmount,
               email: store.currentUser,
               created_at: Date.now(),
           })
           .then ((doc)=>{
               console.log("Spremljeno ", doc);
               this.DueDate = "";
+<<<<<<< HEAD
               this.ClientName2 = "";
               this.BillName2 = "";
               this.BillAmount2 = "";
+=======
+              this.ClientName = "";
+              this.BillName = "";
+              this.BillAmount = "";
+>>>>>>> 6662b6ffadb303ef542f1e32e169d8fec6d38a6e
               
-              this.getInvoices2();
+              this.getInvoices();
           })
           .catch ((e)=> {
               console.error(e);

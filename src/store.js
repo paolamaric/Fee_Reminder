@@ -17,7 +17,7 @@ export default new Vuex.Store({
         },
     actions: {
         async login({dispatch}, form) {
-            const { user } = await fb.auth.signInWithEmailAndPassword(form.email, form.password);
+            const { user } = fb.auth.signInWithEmailAndPassword(form.email, form.password);
             dispatch('fetchUserProfile', user);
             },
         async signup({ dispatch }, form) {
@@ -48,11 +48,15 @@ export default new Vuex.Store({
             },
             
         async fetchUserProfile({ commit }, user) {
-            const userProfile = fb.usersCollection.doc(user.uid).get();
+            const userProfile = await fb.usersCollection.doc(user.uid).get();
             commit('setUserProfile', userProfile.data);
             if (router.currentRoute.path === '/login' || router.currentRoute.path === '/registration') {
                 window.location = '/HomeClient';
+<<<<<<< HEAD
                 // router.push('/');
+=======
+                // router.push('/HomeClient');
+>>>>>>> 6662b6ffadb303ef542f1e32e169d8fec6d38a6e
                 }
             }
         }
