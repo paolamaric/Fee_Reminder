@@ -17,24 +17,42 @@ export default new Vuex.Store({
         },
     actions: {
         async login({dispatch}, form) {
-            const { user } = await fb.auth.signInWithEmailAndPassword(form.email, form.password);
+            const { user } = fb.auth.signInWithEmailAndPassword(form.email, form.password);
             dispatch('fetchUserProfile', user);
             },
         async signup({ dispatch }, form) {
             const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password);
-            await fb.usersCollection.doc(user.uid).set({
-                name: form.name,
-                isHost: form.isHost
-                }).then(async function() {
-                    await dispatch('fetchUserProfile', user);
-                    })
+            if (form.isHost) {
+                await fb.usersCollection.doc(user.uid).set({
+                    name: form.name,
+                    adress: form.adress,
+                    city: form.city,
+                    zip: form.zip,
+                    OIB: form.OIB,
+                    isHost: form.isHost
+                    }).then(async function() {
+                        await dispatch('fetchUserProfile', user);
+                        }) 
+                }
+            else {
+                await fb.usersCollection.doc(user.uid).set({
+                    name: form.name,
+                    adress: form.adress,
+                    city: form.city,
+                    zip: form.zip,
+                    isHost: form.isHost
+                    }).then(async function() {
+                        await dispatch('fetchUserProfile', user);
+                        })
+                }
             },
+            
         async fetchUserProfile({ commit }, user) {
-            const userProfile = fb.usersCollection.doc(user.uid).get();
+            const userProfile = await fb.usersCollection.doc(user.uid).get();
             commit('setUserProfile', userProfile.data);
             if (router.currentRoute.path === '/login' || router.currentRoute.path === '/registration') {
-                window.location = '/';
-                // router.push('/');
+                window.location = '/HomeClient';
+                // router.push('/HomeClient');
                 }
             }
         }

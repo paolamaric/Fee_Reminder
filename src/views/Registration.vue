@@ -72,48 +72,48 @@
                                         <div class="row justify-content-center mt-3">
                                             <div class="col-sm-10 form-group">
                                                 <label>Full name</label>
-                                                <input type="text" v-model="name" placeholder="e.g. Marko Markovic" class="form-control">
+                                                <input type="text" v-model="registerForm.name" placeholder="e.g. Marko Markovic" class="form-control">
                                             </div>
                                             <div class="col-sm-10 form-group">
                                                 <label>Email</label>
-                                                <input type="email" v-model="email" placeholder="e.g. xyz@gmail.com" class="form-control">
+                                                <input type="email" v-model="registerForm.email" placeholder="e.g. xyz@gmail.com" class="form-control">
                                             </div>			
                                             <div class="col-sm-10 form-group">
                                                 <label>Address</label>
-                                                <input type="text" v-model="adress" placeholder="e.g. Zagrebacka ulica" class="form-control">
+                                                <input type="text" v-model="registerForm.adress" placeholder="e.g. Zagrebacka ulica" class="form-control">
                                             </div>	
                                             <div class="col-sm-10 form-group">
                                                 <label>OIB</label>
-                                                <input type="number" v-model="OIB" placeholder="0123456789" class="form-control">
+                                                <input type="number" v-model="registerForm.OIB" placeholder="0123456789" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6 form-group">
                                                 <label>City</label>
-                                                <input type="text" v-model="city" placeholder="e.g. Pula" class="form-control">
+                                                <input type="text" v-model="registerForm.city" placeholder="e.g. Pula" class="form-control">
                                             </div>	
                                             <div class="col-sm-6 form-group">
                                                 <label>Zip Code</label>
-                                                <input type="number" v-model="zip" placeholder="52100" class="form-control">
+                                                <input type="number" v-model="registerForm.zip" placeholder="52100" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row justify-content-center mt-3">
                                             <div class="col-sm-10 form-group">
                                                 <label>Password</label>
-                                                <input type="password" minlength=6 v-model="password" placeholder="Enter Your Password" class="form-control" aria-describedby="passwordHelpBlock">
+                                                <input type="password" minlength=6 v-model="registerForm.password" placeholder="Enter Your Password" class="form-control" aria-describedby="passwordHelpBlock">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">
                                                     Your password must be longer than 6 characters
                                                 </small>
                                             </div>	
                                             <div class="col-sm-10 form-group">
                                                 <label>Repeat Password</label>
-                                                <input type="password" minlength=6 v-model="passwordRepeat" placeholder="Retype Your Password" class="form-control" aria-describedby="passwordHelpBlockRepeat">
+                                                <input type="password" minlength=6 v-model="registerForm.passwordRepeat" placeholder="Retype Your Password" class="form-control" aria-describedby="passwordHelpBlockRepeat">
                                                 <small id="passwordHelpBlockRepeat" class="form-text text-muted">
                                                     Repeat the pasword from the field above
                                                 </small>
                                             </div>		
                                         </div>					
-                                        <button type="button" @click="signup" class="btn btn-primary btn-lg js-scroll-trigger">Register</button>
+                                        <button type="button" @click="signup(true)" class="btn btn-primary btn-lg js-scroll-trigger">Register</button>
                                     </form> 
                                 </div>
                             </div>
@@ -141,44 +141,44 @@
                                     <div class="row justify-content-center mt-3">
                                         <div class="col-sm-10 form-group">
                                             <label>Full name</label>
-                                            <input type="text" v-model="name" placeholder="e.g. Marko Markovic" class="form-control">
+                                            <input type="text" v-model="registerForm.name" placeholder="e.g. Marko Markovic" class="form-control">
                                         </div>
                                         <div class="col-sm-10 form-group">
                                             <label>Email</label>
-                                            <input type="email" v-model="email" placeholder="e.g. xyz@gmail.com" class="form-control">
+                                            <input type="email" v-model="registerForm.email" placeholder="e.g. xyz@gmail.com" class="form-control">
                                         </div>			
                                     <div class="col-sm-10 form-group">
                                         <label>Address</label>
-                                        <input type="text" v-model="adress" placeholder="e.g. Zagrebacka ulica" class="form-control">
+                                        <input type="text" v-model="registerForm.adress" placeholder="e.g. Zagrebacka ulica" class="form-control">
                                     </div>	
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 form-group">
                                             <label>City</label>
-                                            <input type="text" v-model="city" placeholder="e.g. Pula" class="form-control">
+                                            <input type="text" v-model="registerForm.city" placeholder="e.g. Pula" class="form-control">
                                         </div>	
                                         <div class="col-sm-6 form-group">
                                             <label>Zip Code</label>
-                                            <input type="number" v-model="zip" placeholder="52100" class="form-control">
+                                            <input type="number" v-model="registerForm.zip" placeholder="52100" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mt-3">
                                         <div class="col-sm-10 form-group">
                                             <label>Password</label>
-                                            <input type="password" minlength=6 v-model="password" placeholder="Enter Your Password" class="form-control" aria-describedby="passwordHelpBlock">
+                                            <input type="password" minlength=6 v-model="registerForm.password" placeholder="Enter Your Password" class="form-control" aria-describedby="passwordHelpBlock">
                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                 Your password must be longer than 6 characters
                                             </small>
                                         </div>	
                                         <div class="col-sm-10 form-group">
                                             <label>Repeat Password</label>
-                                            <input type="password" minlength=6 v-model="passwordRepeat" placeholder="Retype Your Password" class="form-control" aria-describedby="passwordHelpBlockRepeat">
+                                            <input type="password" minlength=6 v-model="registerForm.passwordRepeat" placeholder="Retype Your Password" class="form-control" aria-describedby="passwordHelpBlockRepeat">
                                             <small id="passwordHelpBlockRepeat" class="form-text text-muted">
                                                 Repeat the pasword from the field above
                                             </small>
                                         </div>		
                                     </div>					
-                                    <button type="button" @click="signup" class="btn btn-primary btn-lg js-scroll-trigger">Register</button>
+                                    <button type="button" @click="signup(false)" class="btn btn-primary btn-lg js-scroll-trigger">Register</button>
                                 </form> 
                             </div>
                         </div>
@@ -221,13 +221,30 @@ export default {
 			// })
 			// console.log('Nastavak');
             // },
-            this.$store.dispatch('signup', {
-                name: this.registerForm.name,
-                email: this.registerForm.email,
-                password: this.registerForm.password,
-                isHost: isHost
-                })
+            if (isHost) {
+                this.$store.dispatch('signup', {
+                    name: this.registerForm.name,
+                    email: this.registerForm.email,
+                    adress: this.registerForm.adress,
+                    city: this.registerForm.city,
+                    zip: this.registerForm.zip,
+                    OIB: this.registerForm.OIB,
+                    password: this.registerForm.password,
+                    isHost: isHost
+                    })
+                }
+            else {
+                this.$store.dispatch('signup', {
+                    name: this.registerForm.name,
+                    email: this.registerForm.email,
+                    adress: this.registerForm.adress,
+                    city: this.registerForm.city,
+                    zip: this.registerForm.zip,
+                    password: this.registerForm.password,
+                    isHost: isHost
+                    })
             }
+            }       
 		},
 	};
 </script>

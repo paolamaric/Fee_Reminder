@@ -1,9 +1,9 @@
 <template>
-    <div class="container-fluid">
-        <div class="row my-4">
+     <div class="container-fluid">
+        <div class="row my-4" >
             <div class="col-2 p-0">
                 <div class="col-12">
-                    <a href="" class="card1" data-toggle="modal" data-target="#InvoiceModal"> 
+                    <a href="" class="card1" data-toggle="modal" data-target="#Invoice"> 
                         <span>
                             <span>
                                 <span>
@@ -109,20 +109,20 @@
                             <div class="col-lg-12 well">
                                 <form>
                                   <div id="app">
-                                    <mdb-container>
-                                      <mdb-row>
-                                        <mdb-col>
+                                    <div class="container-md">
+                                      <div class="row-md">
+                                        <div class="col-md">
                                           <!-- <b> {{Invoices.id}} </b> -->
                                           <br>Buisness info<br>
-                                        </mdb-col>
-                                        <mdb-col>
+                                        </div>
+                                        <div class="col-md">
                                           <b>Due on receipt</b><br>
                                           <div id="app">
-                                             <input type="date" v-model="date">
+                                             <input type="date" id="DueDate" v-model="DueDate">
                                           </div>
-                                        </mdb-col>
-                                      </mdb-row>
-                                    </mdb-container>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                   <div class="form-group row">
                                       <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
@@ -146,7 +146,7 @@
                                       <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
                                   </div>
                                   <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
-                                  <button type="button" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                  <button type="button" @click="postNewInvoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
                                   </form> 
                               </div>
                           </div>
@@ -180,7 +180,7 @@
                                   <div class="form-group mt-3 row">
                                     <label class="col-form-label col-sm-4" for="passLab">Category name: </label>
                                       <div class="col-sm-7"> 
-                                        <input id="passLab" type="text" v-model="CategoryName" placeholder="e.g. Odbojkaški klub" class="form-control">
+                                        <input id="passLab" type="text"  placeholder="e.g. Odbojkaški klub" class="form-control">
                                       </div>
                                   </div>
                                   <div class="form-group mt-3 row">
@@ -381,8 +381,9 @@ body {
 </style>
 
 <script>
-  import store from '@/store';
-  import { db } from '@/firebase';
+import store from '@/store';
+import { db } from '@/firebase';
+import { firebase } from '@/firebase';
 
 export default {
     name:'HomeClient',
@@ -390,31 +391,45 @@ export default {
     },
     data () {
       return {
+        isHostNow: '',
+        DueDate:'',
         ClientName:'',
         BillName:'',
         BillAmount:'',
       };
     },
+    // mounted () {
+    //   let isHostNow 
+    //   firebase.auth().onAuthStateChanged(async (user) => {
+    //     if (user) {
+    //       console.log("Samo da vidim");
+    //       await db.collection('Users').doc(user.uid).get().then((result)=>{
+    //         store.isHostNow = result.data().isHost;
+    //         });
+    //       }
+    //     });
+    //   console.log(store.isHostNow);
+    // },
     methods: {
       postNewInvoice () {
+          const DueDate= this.DueDate
           const ClientName= this.ClientName
           const BillName= this.BillName
           const BillAmount = this.BillAmount
 
           db.collection("Invoices").add({
+              Date: DueDate,
               Client: ClientName,
               Bill: BillName,
               Amount: BillAmount,
-              email: store.currentUser,
-              created_at: Date.now(),
+              // email: store.currentUser,
           })
           .then ((doc)=>{
               console.log("Spremljeno ", doc);
+              this.DueDate ="";
               this.ClientName = "";
               this.BillName = "";
               this.BillAmount = "";
-              
-              this.getInvoices();
           })
           .catch ((e)=> {
               console.error(e);

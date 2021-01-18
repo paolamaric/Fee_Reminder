@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '/'
 import Home1 from '../views/HomeClient.vue'
 import Home2 from '../views/HomeHost.vue'
+import { auth } from '../firebase'
 
 
 Vue.use(VueRouter)
@@ -44,11 +45,11 @@ const routes = [
     name: 'Login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
   },
-  {
-    path: '/ListOfUpcomingBills',
-    name: 'ListOfUpcomingBills',
-    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ListOfUpcomingBills.vue')
-  },
+  // {
+  //   path: '/ListOfUpcomingBills',
+  //   name: 'ListOfUpcomingBills',
+  //   component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ListOfUpcomingBills.vue')
+  // },
   {
     path: '/list',
     name: 'List',
@@ -67,5 +68,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  if (requiresAuth && !auth.currentUser) {
+    next('/login');
+    }
+  else {
+    next();
+    }
+  })
 
 export default router

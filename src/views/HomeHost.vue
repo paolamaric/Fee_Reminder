@@ -64,35 +64,35 @@
                                         <mdb-col>
                                           <b>Due on receipt</b><br>
                                           <div id="app">
-                                             <input type="date" v-model="date">
+                                             <input type="date" id="DueDate" v-model="DueDate">
                                           </div>
                                         </mdb-col>
                                       </mdb-row>
                                     </mdb-container>
                                   </div>
                                 <div class="form-group row">
-                                    <label class="col-form-label col-sm-3" for="ClientName2" >To: </label>
+                                    <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="ClientName2" v-model="ClientName2" placeholder="Enter Client Name Here..." class="form-control">
+                                        <input type="text" id="ClientName" v-model="ClientName" placeholder="Enter Client Name Here..." class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group mt-3 row">
-                                    <label class="col-form-label col-sm-3" for="BillName2">Bill name: </label>
+                                    <label class="col-form-label col-sm-3" for="BillName">Bill name: </label>
                                     <div class="col-sm-9"> 
-                                        <input id="BillName2" type="text" v-model="BillName2" placeholder="e.g. Membership fee" class="form-control">
+                                        <input id="BillName" type="text" v-model="BillName" placeholder="e.g. Membership fee" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group mt-3 row">
-                                    <label class="col-form-label col-sm-3" for="BillAmount2">Bill amount: </label>
+                                    <label class="col-form-label col-sm-3" for="BillAmount">Bill amount: </label>
                                     <div class="col-sm-9"> 
-                                        <input id="BillAmount2" type="number" minlength=1,2 v-model="BillAmount2" placeholder="e.g. 150,00 kn" class="form-control">
+                                        <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
                                     </div>
                                 </div>
                                 <div class="text-right">
                                     <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
                                 </div>
                                 <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
-                                <button type="button" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                <button type="button" @click="postNewInvoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
                                 </form> 
                             </div>
                         </div>
@@ -153,7 +153,6 @@
 </template>
 
 <script>
-import {mdbContainer, mdbRow, mdbCol} from 'mdbvue';
 import moment from 'moment';
 import store from '@/store';
 import { db } from '@/firebase';
@@ -168,59 +167,64 @@ import { db } from '@/firebase';
 
 export default {
     name:'HomeHost',
-    props: ['Invoices2'],
+    props: ['Invoices'],
     components: {
     },
     data () {
       return {
-        ClientName2:'',
-        BillName2:'',
-        BillAmount2:'',
+        DueDate:'',
+        ClientName:'',
+        BillName:'',
+        BillAmount:'',
       };
     },
     mounted () {
-        this.getInvoices2();
+        this.getInvoices();
 
-        db.collection("Invoices2")
+        db.collection("Invoices")
             .orderBy("posted_at" , "desc")
             .limit(20)
             .get()
             .then((query) => {
-                this.Invoices2 = [];
+                this.Invoices = [];
                 query.forEach((doc) => {
 
                 const data = doc.data();
 
-                this.Invoices2.push({
+                this.Invoices.push({
                     id: doc.id,
+                    Date: data.DueDate,
                     time: data.posted_at,
-                    ClientName: data.ClientName2,
-                    BillName: data.BillName2,
-                    BillAmount: data.BillAmount2
+                    ClientName: data.ClientName,
+                    BillName: data.BillName,
+                    BillAmount: data.BillAmount
                 })
             });
         })
     },
     methods: {
       postNewInvoice () {
-          const ClientName2= this.ClientName2
-          const BillName2= this.BillName2
-          const BillAmount2 = this.BillAmount2
+          const DueDate= this.DueDate
+          const ClientName= this.ClientName
+          const BillName= this.BillName
+          const BillAmount = this.BillAmount
 
-          db.collection("Invoices2").add({
-              Client: ClientName2,
-              Bill: BillName2,
-              Amount: BillAmount2,
+          db.collection("Invoices").add({
+              Date: DueDate,
+              Client: ClientName,
+              Bill: BillName,
+              Amount: BillAmount,
               email: store.currentUser,
               created_at: Date.now(),
           })
           .then ((doc)=>{
               console.log("Spremljeno ", doc);
-              this.ClientName2 = "";
-              this.BillName2 = "";
-              this.BillAmount2 = "";
+              this.DueDate = "";
+              this.ClientName = "";
+              this.BillName = "";
+              this.BillAmount = "";
               
-              this.getInvoices2();
+              this.getInvoices();
           })
           .catch ((e)=> {
               console.error(e);

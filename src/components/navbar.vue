@@ -9,7 +9,7 @@
       <ul class="navbar-nav">  
         <router-link class="nav-item nav-link" to="/about">About</router-link> 
         <li v-if="!store.currentUser" class="nav-item">  
-          <router-link class="nav-item nav-link" to="/Registration">Register</router-link> 
+          <router-link class="nav-item nav-link" to="/registration">Register</router-link> 
         </li>
         <li v-if="!store.currentUser" class="nav-item">
           <router-link  to="/login" class="nav-link">Login</router-link>
@@ -47,7 +47,7 @@ export default {
       logout() {
         firebase.auth().signOut().then(() => {
           // this.$router.replace({ name: 'Login' });
-          window.location = 'Login';
+          window.location = 'login';
       }); 
     },
     },
