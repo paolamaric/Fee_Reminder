@@ -26,72 +26,72 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr :key="client.key" v-for="client in clients">
-                        <td>
-                            {{client.id}}
-                        </td>
-                        <td>
-                            {{client.cname}}
-                        </td>
-                        <td>
-                            {{client.email}}
-                        </td>
-                        <td>
-                            {{client.phone}}
-                        </td>
-                        <td>
-                            {{client.address}}
-                        </td>
-                    </tr>
-                </tbody>
+                        <tr :key="client.key" v-for="client in clients">
+                            <td>
+                                {{client.id}}
+                            </td>
+                            <td>
+                                {{client.cname}}
+                            </td>
+                            <td>
+                                {{client.email}}
+                            </td>
+                            <td>
+                                {{client.phone}}
+                            </td>
+                            <td>
+                                {{client.address}}
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
-            <div class="modal fade" id="Clients" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+        <div class="modal fade" id="Clients" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLabel"><b>Add New Client</b></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                </div>
                 <div class="modal-body">
                     <div class="row">
-                    <div class="col-lg-12 well">
-                        <form>
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-3" for="cname">Client Name: </label>
-                            <div class="col-sm-9">
-                                <input type="cname" id="cname" v-model="cname" placeholder="e.g. John Deer" class="form-control">
+                        <div class="col-lg-12 well">
+                            <form>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3" for="cname">Client Name: </label>
+                                <div class="col-sm-9">
+                                    <input type="cname" id="cname" v-model="cname" placeholder="e.g. John Deer" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mt-3 row">
-                            <label class="col-form-label col-sm-3" for="email">Email: </label>
-                            <div class="col-sm-9"> 
-                                <input id="email" type="email" v-model="email" placeholder="e.g. jdeer@gmail.com" class="form-control">
+                            <div class="form-group mt-3 row">
+                                <label class="col-form-label col-sm-3" for="email">Email: </label>
+                                <div class="col-sm-9"> 
+                                    <input id="email" type="email" v-model="email" placeholder="e.g. jdeer@gmail.com" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mt-3 row">
-                            <label class="col-form-label col-sm-3" for="phone">Phone: </label>
-                            <div class="col-sm-9"> 
-                                <input id="phone" type="phone" minlength=10 v-model="phone" placeholder="e.g. +3851234562" class="form-control">
+                            <div class="form-group mt-3 row">
+                                <label class="col-form-label col-sm-3" for="phone">Phone: </label>
+                                <div class="col-sm-9"> 
+                                    <input id="phone" type="phone" minlength=10 v-model="phone" placeholder="e.g. +3851234562" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mt-3 row">
-                            <label class="col-form-label col-sm-3" for="address">Address: </label>
-                            <div class="col-sm-9"> 
-                                <input id="address" type="address" v-model="address" placeholder="e.g. Wall Street" class="form-control">
+                            <div class="form-group mt-3 row">
+                                <label class="col-form-label col-sm-3" for="address">Address: </label>
+                                <div class="col-sm-9"> 
+                                    <input id="address" type="address" v-model="address" placeholder="e.g. Wall Street" class="form-control">
+                                </div>
                             </div>
+                            <button type="button" @click="postNewClient()" class="btn btn-primary btn-sm mt-3">Add Client</button>
+                            </form> 
                         </div>
-                        <button type="button" @click="postNewClient()" class="btn btn-primary btn-sm mt-3">Add Client</button>
-                        </form> 
-                    </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                 </div>
-                </div>
             </div>
         </div>
+    </div>   
     </div>
 </template>
 
@@ -125,7 +125,7 @@ import { db } from '@/firebase';
 import { clientsCollection } from '@/firebase';
 
 export default {
-    name:'Clients',
+    name:'ClientsHost',
     // props: ['Clients'],
   
     data () {

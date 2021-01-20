@@ -34,11 +34,11 @@
   import { firebase } from '@/firebase';
   import router from '@/router';
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log("*", user.email);
-      store.currentUser = user.email;
-      } 
+  // firebase.auth().onAuthStateChanged((user) => {
+  //   if (user) {
+  //     console.log("*", user.email);
+  //     store.currentUser = user.email;
+  //     } 
     // else {
     //   console.log('No user');
     //   store.currentUser = null;
@@ -47,7 +47,7 @@
     //     window.location = 'about';
     //     }
       // }
-    });
+    // });
   export default {
     name:'App',
     components: {
@@ -57,13 +57,13 @@
       return {
         store,
         };
-      },
-    methods: {
-      logout() {
-        firebase.auth().signOut().then(() => {
-          this.$router.replace({ name: 'Login' });
-          });
-        }
       }
-    }
+    // methods: {
+    //   logout() {
+    //     firebase.auth().signOut().then(() => {
+    //       this.$router.replace({ name: 'Login' });
+    //       });
+    //     }
+    //   }
+  }
 </script>

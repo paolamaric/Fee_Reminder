@@ -17,8 +17,8 @@ auth.onAuthStateChanged(user => {
       render: h => h(App)
       }).$mount('#app')    
     }
-  // if (user) {
-  //   console.log("U main.js");
-  //   store.dispatch('fetchUserProfile', user)
-  //   }
+  if (user) {
+    console.log("Inside main.js");
+    store.dispatch('fetchUserProfile', user)
+    }
   });

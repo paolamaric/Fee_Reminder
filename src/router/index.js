@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import FirstPage from '../views/FirstPage.vue'
 import Home from '../views/Home.vue'
-import Home1 from '../views/HomeClient.vue'
-import Home2 from '../views/HomeHost.vue'
 import { auth } from '../firebase'
 
 Vue.use(VueRouter)
@@ -10,18 +9,19 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'FirstPage',
+    components: FirstPage
+  },
+  {
+    path: '/home',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '/HomeClient',
-    name: 'HomeClient',
-    component: Home1
-  },
-  {
-    path: '/HomeHost',
-    name: 'HomeHost',
-    component: Home2
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue'),
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: '/about',
@@ -34,9 +34,6 @@ const routes = [
   {
     path: '/registration',
     name: 'Registration',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Registration" */ '../views/Registration.vue')
   },
   {
@@ -44,20 +41,22 @@ const routes = [
     name: 'Login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
   },
-<<<<<<< HEAD
-  
   {
     path: '/ClientsHost',
     name: 'ClientsHost',
-     component: () => import(/* webpackChunkName: "about" */ '../views/ClientsHost.vue'),
+    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ClientsHost.vue'),
+    meta: {
+      requiresAuth: true
+      }
   },
-=======
-  // {
-  //   path: '/ListOfUpcomingBills',
-  //   name: 'ListOfUpcomingBills',
-  //   component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ListOfUpcomingBills.vue')
-  // },
->>>>>>> 6662b6ffadb303ef542f1e32e169d8fec6d38a6e
+  {
+    path: '/InvoiceHost',
+    name: 'InvoiceHost',
+    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/InvoiceHost.vue'),
+    meta: {
+      requiresAuth: true
+      }
+  },
   {
     path: '/list',
     name: 'List',

@@ -140,17 +140,9 @@ import store from '@/store.js';
         },
         methods: {
             login() {
-<<<<<<< HEAD
-            console.log(this.loginForm);
-            console.log(this.email);
-            this.$store.dispatch('login', { 
-                email: this.email,
-                password: this.password
-=======
             this.$store.dispatch('login', { 
                 email: this.loginForm.email,
                 password: this.loginForm.password
->>>>>>> 6662b6ffadb303ef542f1e32e169d8fec6d38a6e
                 });
             }
         },
@@ -175,3 +167,4 @@ import store from '@/store.js';
         // },
     }
 </script>
+

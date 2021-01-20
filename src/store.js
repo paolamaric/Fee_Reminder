@@ -8,8 +8,8 @@ export default new Vuex.Store({
     state: {
         userProfile:{}
         },
-    searchTerm: '',
-    currentUser: null,
+    // searchTerm: '',
+    // currentUser: null,
     mutations: {
         setUserProfile(state, val) {
             state.userProfile = val;
@@ -18,6 +18,7 @@ export default new Vuex.Store({
     actions: {
         async login({dispatch}, form) {
             const { user } = fb.auth.signInWithEmailAndPassword(form.email, form.password);
+            console.log("u funkciji" + user);
             dispatch('fetchUserProfile', user);
             },
         async signup({ dispatch }, form) {
@@ -46,18 +47,20 @@ export default new Vuex.Store({
                         })
                 }
             },
-            
+        // 
         async fetchUserProfile({ commit }, user) {
+            console.log("U fetch profile" + user.uid)
             const userProfile = await fb.usersCollection.doc(user.uid).get();
-            commit('setUserProfile', userProfile.data);
+            commit('setUserProfile', userProfile.data());
             if (router.currentRoute.path === '/login' || router.currentRoute.path === '/registration') {
-                window.location = '/HomeClient';
-<<<<<<< HEAD
-                // router.push('/');
-=======
+                window.location = '/home';
                 // router.push('/HomeClient');
->>>>>>> 6662b6ffadb303ef542f1e32e169d8fec6d38a6e
-                }
+            }
+        },
+        async logout ({ commit }) {
+            fb.auth.signOut();
+            commit('setUserProfile',userProfile.data());
+            window.location = '/login';
             }
         }
     });

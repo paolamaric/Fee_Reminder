@@ -1,30 +1,30 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" to="/HomeClient">Home Client</router-link>
-    <router-link class="navbar-brand" to="/HomeHost">Home Host</router-link>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light pt-3"> 
+    <ul class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <router-link class="navbar-brand" to="/home">Home</router-link>
+      <!-- <router-link class="navbar-brand" to="/HomeHost">Home Host</router-link> -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button> 
-    <ul class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      </button>
       <ul class="navbar-nav">  
         <router-link class="nav-item nav-link" to="/about">About</router-link> 
-        <li v-if="!store.currentUser" class="nav-item">  
+        <li v-if="!userProfile.name" class="nav-item">  
           <router-link class="nav-item nav-link" to="/registration">Register</router-link> 
         </li>
-        <li v-if="!store.currentUser" class="nav-item">
+        <li v-if="!userProfile.name" class="nav-item">
           <router-link  to="/login" class="nav-link">Login</router-link>
         </li>
-        <li v-if="store.currentUser" class="nav-item" >
+        <!-- <li v-if="userProfile.isHost" class="nav-item" >
           <router-link to="/list" class="nav-link">Bills</router-link>
-        </li>
-        <li v-if="store.currentUser" class="nav-item" >
-          <a href="#" @click="logout()" to="/logout" class="nav-link">Logout</a>
+        </li> -->
+        <li v-if="userProfile.name" class="nav-item" >
+          <a href="#" @click="logout()" class="nav-link">Logout</a>
         </li>
       </ul>
       <ul class="navbar-nav pt-2 ml-auto mr-1">
         <li class="nav-item ml-auto mr-1">
-          <router-link class="nav-link" v-if="store.currentUser != null" :to="'/users/' + store.currentUser">
-            {{store.currentUser}}
+          <router-link class="nav-link" v-if="userProfile.name != null" :to="'/users/' + userProfile.name">
+            {{userProfile.name}}
           </router-link>  
         </li>
       </ul>
@@ -35,6 +35,8 @@
 <script>
 import { firebase } from '@/firebase';
 import store from '@/store';
+import auth from '@/firebase';
+import { mapState } from 'vuex';
 
 export default {
     name: 'FeeNavbar',
@@ -43,13 +45,21 @@ export default {
         store,
       };
     },
+    computed: {
+      ...mapState(['userProfile'])
+    },
     methods: {
       logout() {
-        firebase.auth().signOut().then(() => {
-          // this.$router.replace({ name: 'Login' });
-          window.location = 'login';
-      }); 
-    },
-    },
-};
+        this.$store.dispatch('logout');
+        },
+      }
+    // methods: {
+    //   logout() {
+    //     firebase.auth().signOut().then(() => {
+    //       // this.$router.replace({ name: 'Login' });
+    //       window.location = 'login';
+    //   }); 
+    // },
+    // },
+  };
 </script>
