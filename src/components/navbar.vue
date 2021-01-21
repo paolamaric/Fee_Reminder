@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light pt-3"> 
     <ul class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <router-link class="navbar-brand" to="/home">Home</router-link>
+      <router-link v-if="!userProfile.name" class="navbar-brand" to="/">Home</router-link>
+      <router-link v-if="userProfile.name" class="navbar-brand" to="/home">Home</router-link>
       <!-- <router-link class="navbar-brand" to="/HomeHost">Home Host</router-link> -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,9 +15,6 @@
         <li v-if="!userProfile.name" class="nav-item">
           <router-link  to="/login" class="nav-link">Login</router-link>
         </li>
-        <!-- <li v-if="userProfile.isHost" class="nav-item" >
-          <router-link to="/list" class="nav-link">Bills</router-link>
-        </li> -->
         <li v-if="userProfile.name" class="nav-item" >
           <a href="#" @click="logout()" class="nav-link">Logout</a>
         </li>

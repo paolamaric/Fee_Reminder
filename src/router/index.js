@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'FirstPage',
-    components: FirstPage
+    component: () => import(/* webpackChunkName: "about" */ '../views/FirstPage.vue'),
   },
   {
     path: '/home',

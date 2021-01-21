@@ -58,8 +58,8 @@ export default new Vuex.Store({
             }
         },
         async logout ({ commit }) {
-            fb.auth.signOut();
-            commit('setUserProfile',userProfile.data());
+            await fb.auth.signOut();
+            commit('setUserProfile',{});
             window.location = '/login';
             }
         }
