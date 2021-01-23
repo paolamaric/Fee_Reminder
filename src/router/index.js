@@ -68,6 +68,12 @@ const routes = [
       requiresAuth: true
       }
   },
+   {
+    path: '/Categories',
+    name: 'Categories',
+    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/Categories.vue'),
+   
+  },
   
 ]
 

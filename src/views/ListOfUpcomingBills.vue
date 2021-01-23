@@ -17,6 +17,12 @@
                         <th scope="col">
                             Bill Amount
                         </th>
+                        <th scope="col">
+                            Category
+                        </th>
+                        <th scope="col">
+                            Paid
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +38,12 @@
                         </td>
                         <td>
                             {{invoice.BillAmount}}
+                        </td>
+                        <td>
+                              
+                        </td>
+                        <td>
+                              <input type="checkbox">
                         </td>
                     </tr>
                 </tbody>

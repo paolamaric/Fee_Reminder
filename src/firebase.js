@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+
 var firebaseConfig = {
 
     apiKey: "AIzaSyDCGebnMxyteDnxoPNA8vVVTwJ0wwCz-ck",
@@ -18,10 +19,12 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 
+
 const usersCollection = db.collection('Users');
 const invoiceCollection = db.collection('Invoices');
-const clientsCollection = db.collection('Clients')
+const clientsCollection = db.collection('Clients');
+const invoicesHostColl = db.collection('InvoicesHost')
 
 export {
-    firebase, db, usersCollection, auth, invoiceCollection, clientsCollection
+    firebase, db, usersCollection, auth, invoiceCollection, clientsCollection, invoicesHostColl
     };

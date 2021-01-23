@@ -43,19 +43,6 @@
             </div>
         </div>
         <div id="layoutAuthentication_footer" _ngcontent-ghc-c106="">
-            <footer class="page-footer font-small bg-success pt-4 mt-5"  _ngcontent-ghc-c101="">
-                <div class="container-fluid text-center text-md-left text-light"  _ngcontent-ghc-c101="">
-                    <div class="row"  _ngcontent-ghc-c101="">
-                        <div class="col-md-6 small"  _ngcontent-ghc-c101="">
-                            <p>
-                                Privacy Policy <br> Terms and conditions   
-                            </p>
-                        </div>
-                    </div>
-                    <div class="footer-copyright text-center py-3">©️ 2020 Copyright: YourWebsite.com
-                    </div>
-                </div>
-            </footer>
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -76,11 +63,13 @@
                                             </div>
                                             <div class="col-sm-10 form-group">
                                                 <label>Email</label>
-                                                <input type="email" v-model="registerForm.email" placeholder="e.g. xyz@gmail.com" class="form-control">
+                                                <input type="email" v-model="registerForm.email" placeholder="e.g. xyz@gmail.com" class="form-control" >
+                                                
                                             </div>			
                                             <div class="col-sm-10 form-group">
                                                 <label>Address</label>
                                                 <input type="text" v-model="registerForm.adress" placeholder="e.g. Zagrebacka ulica" class="form-control">
+                                               
                                             </div>	
                                             <div class="col-sm-10 form-group">
                                                 <label>OIB</label>
@@ -145,7 +134,7 @@
                                         </div>
                                         <div class="col-sm-10 form-group">
                                             <label>Email</label>
-                                            <input type="email" v-model="registerForm.email" placeholder="e.g. xyz@gmail.com" class="form-control">
+                                            <input type="email" v-model="registerForm.email" placeholder="e.g. xyz@gmail.com" class="form-control"> 
                                         </div>			
                                     <div class="col-sm-10 form-group">
                                         <label>Address</label>
@@ -196,7 +185,7 @@
 import { firebase } from '@/firebase.js';
 
 export default {
-	name: "Registration",
+    name: "Registration",
 	data() {
 		return {
             registerForm: {
@@ -212,6 +201,7 @@ export default {
 		};
 	},
 	methods: {
+
 		signup(isHost) {
 			// firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
 			// 	console.log('Uspjesna registracija');

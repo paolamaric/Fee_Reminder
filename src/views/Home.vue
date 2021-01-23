@@ -95,7 +95,7 @@
             </div>
             <div class="col-2 p-0">
                 <div class="col-12">
-                    <a href="" class="card1" data-toggle="modal" data-target="#Category"> 
+                    <a href="/Categories" class="card1">
                         <span>
                             <span>
                                 <span>
@@ -153,19 +153,22 @@
                                   <div id="app">
                                     <div class="container-md">
                                       <div class="row-md">
-                                        <div class="col-md">
+                                        <div class="col-md ">
                                           <!-- <b> {{Invoices.id}} </b> -->
                                           <br>Buisness info<br>
                                         </div>
                                         <div class="col-md">
                                           <b>Due on receipt</b><br>
-                                          <div id="app">
-                                             <input type="date" id="DueDate" v-model="DueDate">
-                                          </div>
+                                          <div class="row justify-content-center">
+                                          <div class="col-sm-6 col-xs-offset-3" >
+                                             <input class="form-control" type="date" id="DueDate" v-model="DueDate">
+                                          </div> 
+                                          </div> 
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                  
                                   <div class="form-group row">
                                       <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
                                       <div class="col-sm-9">
@@ -183,6 +186,19 @@
                                       <div class="col-sm-9"> 
                                           <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
                                       </div>
+                                  </div>
+                                  <div class="form-group mt-3 row">	                                 
+                                      <label class="col-form-label col-sm-3" for="Category">Category: </label>
+                                      <div class="col-sm-9"> 
+                                      <select class="form-control" aria-label="Default select example">	                                    
+                                          <option value="1">Car&Moto</option>	                                          
+                                          <option value="2">Membership fees</option>	                                         
+                                          <option value="3">Dining</option>	                                          
+                                          <option value="4">Rent</option>	 
+                                          <option value="5">Utilities</option>	
+                                          <option value="6">Other</option>	                                           
+                                        </select>	
+                                        </div>                                       
                                   </div>
                                   <div class="text-right">
                                       <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
@@ -385,6 +401,17 @@ body {
 
 
 .card2 {
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  width: 100%;
+  @include card1-border-slide(#252525, #168dff, 3px, 0.8s);
+  padding: 50px;
+  background-color: #f2f2f2;
+  }
+
+  .card3 {
   font-size: 2em;
   text-transform: uppercase;
   letter-spacing: 0.1em;

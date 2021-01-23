@@ -8,9 +8,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <!-- <th scope="col">
+                            <!--<th scope="col">
                                 Invoice ID
-                            </th> -->
+                            </th> !-->
                             <th scope="col">
                                 Client Name
                             </th>
@@ -23,13 +23,19 @@
                             <th scope="col">
                                 Due date
                             </th>
+                            <th scope="col">
+                                Category
+                            </th>
+                            <th scope="col">
+                                Paid
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr :key="invoice.key" v-for="invoice in invoices">
-                            <!-- <td>
+                        <tr :key="invoice.key" v-for="invoice in invoice">
+                          <!-- <td>
                                 {{invoice.id}}
-                            </td> -->
+                            </td> !-->
                             <td>
                                 {{invoice.ClientName}}
                             </td>
@@ -41,6 +47,12 @@
                             </td>
                             <td>
                                 {{invoice.DueDate}}
+                            </td>
+                            <td>
+                              
+                            </td>
+                            <td>
+                              <input type="checkbox">
                             </td>
                         </tr>
                     </tbody>
@@ -57,45 +69,62 @@
                             <div class="row">
                                 <div class="col-lg-12 well">
                                     <form>
-                                        <div id="app">
-                                            <div class="container">
-                                                <div class="row-md">
-                                                    <div class="col-md">
-                                                    <!-- <b> {{Invoices2.id}} </b> -->
-                                                    <br>Buisness info<br>
-                                                    </div>
-                                                    <div class="col-md">
-                                                    <b>Due on receipt</b><br>
-                                                        <div id="app">
-                                                            <input type="date" id="DueDate" v-model="DueDate">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                  <div id="app">
+                                    <div class="container-md">
+                                      <div class="row-md">
+                                        <div class="col-md">
+                                          <!-- <b> {{Invoices.id}} </b> -->
+                                          <br>Buisness info<br>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" id="ClientName" v-model="ClientName" placeholder="Enter Client Name Here..." class="form-control">
-                                            </div>
+                                        <div class="col-md">
+                                          <b>Due on receipt</b><br>
+                                          <div class="row justify-content-center">
+                                          <div class="col-sm-6 col-xs-offset-3" >
+                                             <input class="form-control" type="date" id="DueDate" v-model="DueDate">
+                                          </div> 
+                                          </div> 
                                         </div>
-                                        <div class="form-group mt-3 row">
-                                            <label class="col-form-label col-sm-3" for="BillName">Bill name: </label>
-                                            <div class="col-sm-9"> 
-                                                <input id="BillName" type="text" v-model="BillName" placeholder="e.g. Membership fee" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group mt-3 row">
-                                            <label class="col-form-label col-sm-3" for="BillAmount">Bill amount: </label>
-                                            <div class="col-sm-9"> 
-                                                <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="text-right">
-                                            <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
-                                        </div>
-                                        <button type="button" @click="postNewInvoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
-                                    </form> 
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="form-group row">
+                                      <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
+                                      <div class="col-sm-9">
+                                          <input type="text" id="ClientName" v-model="ClientName" placeholder="Enter Client Name Here..." class="form-control">
+                                      </div>
+                                  </div>
+                                  <div class="form-group mt-3 row">
+                                      <label class="col-form-label col-sm-3" for="BillName">Bill name: </label>
+                                      <div class="col-sm-9"> 
+                                          <input id="BillName" type="text" v-model="BillName" placeholder="e.g. Membership fee" class="form-control">
+                                      </div>
+                                  </div>
+                                  <div class="form-group mt-3 row">
+                                      <label class="col-form-label col-sm-3" for="BillAmount">Bill amount: </label>
+                                      <div class="col-sm-9"> 
+                                          <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
+                                      </div>
+                                  </div>
+                                  <div class="form-group mt-3 row">	                                 
+                                      <label class="col-form-label col-sm-3" for="Category">Category: </label>
+                                      <div class="col-sm-9"> 
+                                      <select class="form-control" aria-label="Default select example">	                                    
+                                          <option value="1">Car&Moto</option>	                                          
+                                          <option value="2">Membership fees</option>	                                         
+                                          <option value="3">Dining</option>	                                          
+                                          <option value="4">Rent</option>	 
+                                          <option value="5">Utilities</option>	
+                                          <option value="6">Other</option>	                                           
+                                        </select>	
+                                        </div>                                       
+                                  </div>
+                                  <div class="text-right">
+                                      <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
+                                  </div>
+                                  <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
+                                  <button type="button" @click="postNewInvoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                  </form> 
                                 </div>
                             </div>
                         </div>
@@ -114,7 +143,7 @@ import moment from 'moment';
 import store from '@/store';
 import { db } from '@/firebase';
 import { firebase } from '@/firebase';
-import { invoiceCollection } from '@/firebase';
+import { invoicesHostColl } from '@/firebase';
 
 export default {
     name:'InvoiceHost',
@@ -122,15 +151,15 @@ export default {
     },
     data () {
         return {
-            invoices: [],
+            invoice: [],
             DueDate:'',
             ClientName:'',
             BillName:'',
-            BillAmount:'',
+            BillAmount:'' 
             };
         },
     mounted () {
-        this.getInvoices();
+        this.getInvoice();
     },
     methods: {
         postNewInvoice () {
@@ -139,7 +168,7 @@ export default {
           const BillName= this.BillName
           const BillAmount = this.BillAmount
 
-          db.collection("Invoices").add({
+          db.collection("InvoicesHost").add({
               Date: DueDate,
               Client: ClientName,
               Bill: BillName,
@@ -156,9 +185,9 @@ export default {
               console.error(e);
           });
         },
-        getInvoices () {
-            let invoices = [];
-            invoiceCollection.get().then((results) => {
+        getInvoice () {
+            let invoicesHost = [];
+            invoicesHostColl.get().then((results) => {
                 results.forEach((doc) => {
                     let data = doc.data();
                     let invoice = {
@@ -166,13 +195,15 @@ export default {
                         DueDate: data.Date,
                         ClientName: data.Client,
                         BillName: data.Bill,
-                        BillAmount: data.Amount                    
+                        BillAmount: data.Amount ,                   
                         }
-                    this.invoices.push(invoice);
+                    this.invoice.push(invoice);
                     })
                 })
             console.log("Firebase dohvat")
             },
+            
+        
     }
 }
 </script>
