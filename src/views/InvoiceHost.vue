@@ -1,16 +1,13 @@
 <template>
     <div class="cointainer">
         <div class="header">
-            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#Invoice">Add New Invoices</button>
+            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#InvoiceHost">Add New Invoices</button>
         </div> 
         <h2 class="my-4"> List of Invoices </h2>
             <div class="row my-4"> 
                 <table class="table">
                     <thead>
                         <tr>
-                            <!--<th scope="col">
-                                Invoice ID
-                            </th> !-->
                             <th scope="col">
                                 Client Name
                             </th>
@@ -24,18 +21,12 @@
                                 Due date
                             </th>
                             <th scope="col">
-                                Category
-                            </th>
-                            <th scope="col">
                                 Paid
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr :key="invoice.key" v-for="invoice in invoice">
-                          <!-- <td>
-                                {{invoice.id}}
-                            </td> !-->
+                        <tr :key="invoice.key" v-for="invoice in invoiceHost">
                             <td>
                                 {{invoice.ClientName}}
                             </td>
@@ -49,16 +40,13 @@
                                 {{invoice.DueDate}}
                             </td>
                             <td>
-                              
-                            </td>
-                            <td>
-                              <input type="checkbox">
+                                {{invoice.isPaid}}
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="modal fade" id="Invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="InvoiceHost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -87,7 +75,6 @@
                                       </div>
                                     </div>
                                   </div>
-                                  
                                   <div class="form-group row">
                                       <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
                                       <div class="col-sm-9">
@@ -106,24 +93,11 @@
                                           <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
                                       </div>
                                   </div>
-                                  <div class="form-group mt-3 row">	                                 
-                                      <label class="col-form-label col-sm-3" for="Category">Category: </label>
-                                      <div class="col-sm-9"> 
-                                      <select class="form-control" aria-label="Default select example">	                                    
-                                          <option value="1">Car&Moto</option>	                                          
-                                          <option value="2">Membership fees</option>	                                         
-                                          <option value="3">Dining</option>	                                          
-                                          <option value="4">Rent</option>	 
-                                          <option value="5">Utilities</option>	
-                                          <option value="6">Other</option>	                                           
-                                        </select>	
-                                        </div>                                       
-                                  </div>
                                   <div class="text-right">
                                       <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
                                   </div>
                                   <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
-                                  <button type="button" @click="postNewInvoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                  <button type="button" @click="postNewInvoiceHost()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
                                   </form> 
                                 </div>
                             </div>
@@ -155,14 +129,14 @@ export default {
             DueDate:'',
             ClientName:'',
             BillName:'',
-            BillAmount:'' 
+            BillAmount:'',
             };
         },
     mounted () {
-        this.getInvoice();
+        this.getInvoiceHost();
     },
     methods: {
-        postNewInvoice () {
+        postNewInvoiceHost () {
           const DueDate= this.DueDate
           const ClientName= this.ClientName
           const BillName= this.BillName
@@ -195,15 +169,13 @@ export default {
                         DueDate: data.Date,
                         ClientName: data.Client,
                         BillName: data.Bill,
-                        BillAmount: data.Amount ,                   
+                        BillAmount: data.Amount,                   
                         }
                     this.invoice.push(invoice);
                     })
                 })
             console.log("Firebase dohvat")
-            },
-            
-        
+        }, 
     }
 }
 </script>

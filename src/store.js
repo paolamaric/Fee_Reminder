@@ -62,5 +62,30 @@ export default new Vuex.Store({
             commit('setUserProfile',{});
             window.location = '/login';
             }
-        }
+        },
+        async invoices({ dispatch }, form) {
+            if (form.isPaid) {
+                await fb.invoiceCollection.doc(user.uid).set({
+                    DueDate: form.DueDate,
+                    ClientName: form.ClientName,
+                    BillName: form.BillName,
+                    BillAmount: form.BillAmount,
+                    Category: form.Category,
+                    isPaid: form.isPaid
+                    }).then(async function() {
+                        await dispatch('fetchInvoices', Invoice);
+                        }) 
+            }
+            else {
+                await fb.invoiceCollection.doc(user.uid).set({
+                    ClientName: form.ClientName,
+                    BillName: form.BillName,
+                    BillAmount: form.BillAmount,
+                    Category: form.Category,
+                    isPaid: form.isPaid
+                    }).then(async function() {
+                        await dispatch('fetchInvoices', Invoice);
+                        })
+            }
+        },
     });

@@ -68,10 +68,16 @@ const routes = [
       requiresAuth: true
       }
   },
-   {
+  {
     path: '/Categories',
     name: 'Categories',
     component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/Categories.vue'),
+   
+  },
+  {
+    path: '/HistoryPaid',
+    name: 'HistoryPaid',
+    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/HistoryPaid.vue'),
    
   },
   
