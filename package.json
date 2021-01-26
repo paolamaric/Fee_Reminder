@@ -7,8 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "angularfire2": "^5.4.2",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
-    "firebase": "^8.2.0",
+    "firebase": "^8.2.4",
     "mdbvue": "^6.7.2",
     "moment": "^2.29.1",
     "vue": "^2.6.11",

@@ -6,13 +6,17 @@ import router from './router/index'
 Vue.use(Vuex);
 export default new Vuex.Store({ 
     state: {
-        userProfile:{}
+        userProfile: {},
+        invoices: {}
         },
     // searchTerm: '',
     // currentUser: null,
     mutations: {
         setUserProfile(state, val) {
             state.userProfile = val;
+            },
+        setInvoices(state, val) {
+            state.invoices = val;
             }
         },
     actions: {
@@ -47,7 +51,6 @@ export default new Vuex.Store({
                         })
                 }
             },
-        // 
         async fetchUserProfile({ commit }, user) {
             console.log("U fetch profile" + user.uid)
             const userProfile = await fb.usersCollection.doc(user.uid).get();
@@ -57,15 +60,58 @@ export default new Vuex.Store({
                 // router.push('/HomeClient');
             }
         },
+        fetchInvoice({commit}) {
+            let paidInvoices = [];
+            let unpaidInvoices = [];
+            console.log("U fetch Invoices")
+            fb.invoiceCollection.get().then((results) => {
+                results.forEach((doc) => {
+                    let data = doc.data();
+                    console.log("Ovo je data" + data);
+                    let invoice = {
+                        id: doc.id,
+                        DueDate: data.DueDate,
+                        ClientName: data.ClientName,
+                        BillName: data.BillName,
+                        BillAmount: data.BillAmount,
+                        Category: data.Category                    
+                        }
+                    console.log(invoice);
+                    console.log(data.isPaid);
+                    console.log(typeof(data.isPaid));
+                    if (data.isPaid) {
+                        paidInvoices.push(invoice);
+                        }
+                    else {
+                        unpaidInvoices.push(invoice);
+                        }
+                    console.log(paidInvoices);
+                    console.log(unpaidInvoices);
+                    }) 
+                })
+                if (router.currentRoute.path === '/HistoryPaid') {
+                    commit('setInvoices', paidInvoices);
+                    // window.location = '/HistoryPaid';
+                    }
+                else if (router.currentRoute.path === '/list') {
+                    commit('setInvoices', unpaidInvoices); 
+                    // window.location = '/list';
+                    }
+                },
+            // else {
+            //     window.location = '/list';
+            //     }
+                // router.push('/HomeClient');
         async logout ({ commit }) {
             await fb.auth.signOut();
             commit('setUserProfile',{});
             window.location = '/login';
-            }
-        },
-        async invoices({ dispatch }, form) {
+            },
+        async invoice({ dispatch }, form) {
+            console.log(form.isPaid);
+            console.log(typeof(form.isPaid));
             if (form.isPaid) {
-                await fb.invoiceCollection.doc(user.uid).set({
+                await fb.invoiceCollection.add({
                     DueDate: form.DueDate,
                     ClientName: form.ClientName,
                     BillName: form.BillName,
@@ -73,19 +119,23 @@ export default new Vuex.Store({
                     Category: form.Category,
                     isPaid: form.isPaid
                     }).then(async function() {
-                        await dispatch('fetchInvoices', Invoice);
+                        await dispatch('fetchInvoice');
+                        window.location = '/HistoryPaid';
                         }) 
-            }
+                }
             else {
-                await fb.invoiceCollection.doc(user.uid).set({
+                await fb.invoiceCollection.add({
                     ClientName: form.ClientName,
                     BillName: form.BillName,
                     BillAmount: form.BillAmount,
                     Category: form.Category,
                     isPaid: form.isPaid
                     }).then(async function() {
-                        await dispatch('fetchInvoices', Invoice);
+                        await dispatch('fetchInvoice');
+                        window.location = '/list';
                         })
+                }
             }
-        },
-    });
+        }
+        })
+    

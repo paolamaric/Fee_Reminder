@@ -201,7 +201,6 @@ export default {
 		};
 	},
 	methods: {
-
 		signup(isHost) {
 			// firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
 			// 	console.log('Uspjesna registracija');

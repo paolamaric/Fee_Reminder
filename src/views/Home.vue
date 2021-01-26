@@ -33,7 +33,7 @@
           </div>
           <div class="col-4 p-0">
               <div class="col-11">
-                  <a href="" class="card2"> 
+                  <a href="/Reports" class="card2"> 
                       <span>
                           <span>
                               <span>
@@ -110,7 +110,7 @@
             </div>
             <div class="col-2 p-0">
                 <div class="col-12">
-                    <a href="" class="card1"> 
+                    <a href="/Reports" class="card1"> 
                         <span>
                             <span>
                                 <span>
@@ -189,20 +189,26 @@
                                       <label class="col-form-label col-sm-3" for="Category">Category: </label>
                                       <div class="col-sm-9"> 
                                       <select class="form-control" v-model="invoiceForm.Category" aria-label="Default select example">	                                    
-                                          <option value="1">Car&Moto</option>	                                          
-                                          <option value="2">Membership fees</option>	                                         
-                                          <option value="3">Dining</option>	                                          
-                                          <option value="4">Rent</option>	 
-                                          <option value="5">Utilities</option>	
-                                          <option value="6">Other</option>	                                           
+                                          <option value="Car&Moto">Car&Moto</option>	                                          
+                                          <option value="Membership fees">Membership fees</option>	                                         
+                                          <option value="Dining">Dining</option>	                                          
+                                          <option value="Rent">Rent</option>	 
+                                          <option value="Utilities">Utilities</option>	
+                                          <option value="Other">Other</option>	                                           
                                         </select>	
                                         </div>                                       
+                                  </div>
+                                  <div class="form-group mt-3 row">	
+                                    <div class="col-sm-9">                                  
+                                      <label for="one">Paid</label>
+                                      <input type="checkbox" id="one" v-model="invoiceForm.isPaid">
+                                      <br> 
+                                    </div>                                      
                                   </div>
                                   <div class="text-right">
                                       <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
                                   </div>
-                                  <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
-                                  <button type="button" @click="postNewInvoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                  <button type="button" @click="invoice()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
                                   </form> 
                               </div>
                           </div>
@@ -423,10 +429,12 @@ body {
 </style>
 
 <script>
+import moment from 'moment';
 import store from '@/store';
 import { db } from '@/firebase';
 import { firebase } from '@/firebase';
 import { mapState } from 'vuex';
+import { invoiceCollection } from '@/firebase';
 
 export default {
     name:'Home',
@@ -434,13 +442,15 @@ export default {
     },
     data () {
       return {
-        isHostNow: '',
-        DueDate:'',
-        ClientName:'',
-        BillName:'',
-        BillAmount:'',
-        Category: '',
-        isPaid: '',
+        isHostNow:'',
+        invoiceForm: {
+          DueDate:'',
+          ClientName:'',
+          BillName:'',
+          BillAmount:'',
+          Category: '',
+          isPaid: '',
+        }
       };
     },
     // mounted () {
@@ -459,7 +469,7 @@ export default {
     ...mapState(['userProfile'])
       },
     methods: {
-      postNewInvoice () {
+      postNewInvoice() {
           const DueDate= this.DueDate
           const ClientName= this.ClientName
           const BillName= this.BillName
@@ -484,7 +494,28 @@ export default {
           .catch ((e)=> {
               console.error(e);
           });
-      }
+      },
+      invoice() {
+        if (this.invoiceForm.isPaid) {
+          this.$store.dispatch('invoice', {
+            DueDate: this.invoiceForm.DueDate,
+            ClientName: this.invoiceForm.ClientName,
+            BillName: this.invoiceForm.BillName,
+            BillAmount: this.invoiceForm.BillAmount,
+            Category: this.invoiceForm.Category,
+            isPaid: this.invoiceForm.isPaid
+            })
+          }
+        else {
+            this.$store.dispatch('invoice', {
+              ClientName: this.invoiceForm.ClientName,
+              BillName: this.invoiceForm.BillName,
+              BillAmount: this.invoiceForm.BillAmount,
+              Category: this.invoiceForm.Category,
+              isPaid: this.invoiceForm.isPaid
+            })
+          }
+        },       
     }
   }
 </script>

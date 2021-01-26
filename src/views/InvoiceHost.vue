@@ -125,7 +125,7 @@ export default {
     },
     data () {
         return {
-            invoice: [],
+            invoiceHost: [],
             DueDate:'',
             ClientName:'',
             BillName:'',
@@ -159,19 +159,19 @@ export default {
               console.error(e);
           });
         },
-        getInvoice () {
+        getInvoiceHost () {
             let invoicesHost = [];
             invoicesHostColl.get().then((results) => {
                 results.forEach((doc) => {
                     let data = doc.data();
-                    let invoice = {
+                    let invoiceHost = {
                         id: doc.id,
                         DueDate: data.Date,
                         ClientName: data.Client,
                         BillName: data.Bill,
                         BillAmount: data.Amount,                   
                         }
-                    this.invoice.push(invoice);
+                    this.invoiceHost.push(invoiceHost);
                     })
                 })
             console.log("Firebase dohvat")

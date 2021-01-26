@@ -40,10 +40,10 @@
                             {{invoice.BillAmount}}
                         </td>
                         <td>
-                              
+                            {{invoice.Category}}
                         </td>
                         <td>
-                              <input type="checkbox">
+                            <!-- {{invoice.isPaid}}> -->
                         </td>
                     </tr>
                 </tbody>
@@ -77,14 +77,15 @@
 <script>
 import moment from 'moment';
 import store from '@/store';
-// import List from '@/components/List.vue';
 import { firebase } from '@/firebase';
 import { db } from '@/firebase';
 import { invoiceCollection } from '@/firebase';
+import { mapState } from 'vuex';
+
 
 export default {
     name:'ListOfUpcomingBills',
-    props: ['Invoices'],
+    // props: ['Invoices'],
     // computed: {
     //     postedFromNow () {
     //         return moment(this.Invoices.time).fromNow();
@@ -97,68 +98,59 @@ export default {
             ClientName:'',
             BillName:'',
             BillAmount:'',
+            Category: '',
+            isPaid,
             };
         },
+    // mounted () {
+    //     this.getInvoices();
+    //     },
+    computed: {
+      ...mapState(['invoices'])
+        },
     mounted () {
-        this.getInvoices();
-        // firebase.invoiceCollection
-        //     .orderBy("posted_at" , "desc")
-        //     .limit(20)
-        //     .get()
-        //     .then((query) => {
-        //         this.List = [];
-        //         query.forEach((doc) => {
-        //         const data = doc.data();
-        //         this.List.push({
-        //             Date: data.DueDate,
-        //             ClientName: data.ClientName,
-        //             BillName: data.BillName,
-        //             BillAmount: data.BillAmount
-        //             })
-        //         });
-        //     })
+        this.$store.dispatch('fetchInvoice');
         },
     methods: {
-        getInvoices () {
+		// invoice(isPaid) {
+        //     if (this.isPaid) {
+        //         this.$store.dispatch('invoice', {
+        //             ClientName: this.invoiceForm.ClientName,
+        //             BillName: this.invoiceForm.BillName,
+        //             BillAmount: this.invoiceForm.BillAmount,
+        //             Category: this.invoiceForm.Category,
+        //             isPaid: isPaid
+        //             })
+        //         }
+        //     else {
+        //         this.$store.dispatch('invoice', {
+        //             DueDate: this.invoiceForm.DueDate,
+        //             ClientName: this.invoiceForm.ClientName,
+        //             BillName: this.invoiceForm.BillName,
+        //             BillAmount: this.invoiceForm.BillAmount,
+        //             Category: this.invoiceForm.Category,
+        //             isPaid: isPaid
+        //             })
+        //     }
+            // },       
+        getInvoice () {
             let invoices = [];
-            invoiceCollection.get().then((results) => {
+            fb.invoiceCollection.get().then((results) => {
                 results.forEach((doc) => {
                     let data = doc.data();
                     let invoice = {
                         id: doc.id,
-                        DueDate: data.Date,
-                        ClientName: data.Client,
-                        BillName: data.Bill,
-                        BillAmount: data.Amount                    
+                        DueDate: data.DueDate,
+                        ClientName: data.ClientName,
+                        BillName: data.BillName,
+                        BillAmount: data.BillAmount,
+                        Category: data.Category                    
                         }
-                    this.invoices.push(invoice);
-                    })
+                    invoices.push(invoice);
+                    }) 
                 })
             console.log("Firebase dohvat")
             },
-        // postNewInvoice () {
-        //   const ClientName= this.ClientName
-        //   const BillName= this.BillName
-        //   const BillAmount = this.BillAmount
-        //   db.collection("Invoices").add({
-        //       Client: ClientName,
-        //       Bill: BillName,
-        //       Amount: BillAmount,
-        //       email: store.currentUser,
-        //       created_at: Date.now(),
-        //   })
-        //   .then ((doc)=>{
-        //       console.log("Spremljeno ", doc);
-        //       this.ClientName = "";
-        //       this.BillName = "";
-        //       this.BillAmount = "";
-              
-        //       this.getInvoices();
-        //   })
-        //   .catch ((e)=> {
-        //       console.error(e);
-        //   });
-        // }
         }
     }
-</script>
+</script> 

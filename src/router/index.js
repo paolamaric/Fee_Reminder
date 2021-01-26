@@ -41,14 +41,7 @@ const routes = [
     name: 'Login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
   },
-  {
-    path: '/ClientsHost',
-    name: 'ClientsHost',
-    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ClientsHost.vue'),
-    meta: {
-      requiresAuth: true
-      }
-  },
+  
   {
     path: '/InvoiceHost',
     name: 'InvoiceHost',
@@ -78,6 +71,12 @@ const routes = [
     path: '/HistoryPaid',
     name: 'HistoryPaid',
     component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/HistoryPaid.vue'),
+   
+  },
+  {
+    path: '/Reports',
+    name: 'Reports',
+    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/Reports.vue'),
    
   },
   

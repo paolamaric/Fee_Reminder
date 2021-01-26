@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-
+// import "firebase/analytics";
 
 var firebaseConfig = {
 
@@ -10,15 +10,20 @@ var firebaseConfig = {
     projectId: "feereminder-90356",
     storageBucket: "feereminder-90356.appspot.com",
     messagingSenderId: "51003893715",
-    appId: "1:51003893715:web:838fb1491e988b23ceb126"
+    appId: "1:51003893715:web:838fb1491e988b23ceb126",
+    databaseURL: "https://feereminder-90356-default-rtdb.firebaseio.com",
+    measurementId: "G-M0JB1H96SB"
   };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+// firebase .analytics();
+
+// alias
+// Vue.prototype.$analytics = firebase.analytics();
 
 const db = firebase.firestore();
 const auth = firebase.auth();
-
 
 const usersCollection = db.collection('Users');
 const invoiceCollection = db.collection('Invoices');
