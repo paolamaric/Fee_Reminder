@@ -1,5 +1,6 @@
 <template>
   <div class="small">
+    <h2> Reports </h2>
     <line-chart :chart-data="invoiceCollection"></line-chart>
     <button @click="fillData()">Randomize</button>
   </div>

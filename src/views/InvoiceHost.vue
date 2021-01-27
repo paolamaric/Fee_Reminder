@@ -61,19 +61,9 @@
                                     <div class="container-md">
                                       <div class="row-md">
                                         <div class="col-md">
-                                          <!-- <b> {{Invoices.id}} </b> -->
-                                          <br>Buisness info<br>
-                                        </div>
-                                        <div class="col-md">
-                                          <b>Due on receipt</b><br>
-                                          <div class="row justify-content-center">
-                                          <div class="col-sm-6 col-xs-offset-3" >
-                                             <input class="form-control" type="date" id="DueDate" v-model="DueDate">
-                                          </div> 
-                                          </div> 
-                                        </div>
                                       </div>
                                     </div>
+                                  </div>
                                   </div>
                                   <div class="form-group row">
                                       <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
@@ -93,6 +83,12 @@
                                           <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
                                       </div>
                                   </div>
+                                  <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3" for="DueDate">Due on receipt:</label>
+                                          <div class="col-sm-9"> 
+                                             <input class="form-control" type="date" id="DueDate">
+                                           </div>
+                                        </div>
                                   <div class="text-right">
                                       <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
                                   </div>

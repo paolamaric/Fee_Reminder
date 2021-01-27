@@ -68,6 +68,12 @@ const routes = [
    
   },
   {
+    path: '/ClientsHost',
+    name: 'ClientsHost',
+    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ClientsHost.vue'),
+   
+  },
+  {
     path: '/HistoryPaid',
     name: 'HistoryPaid',
     component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/HistoryPaid.vue'),

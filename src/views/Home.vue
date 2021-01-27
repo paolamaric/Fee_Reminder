@@ -125,7 +125,7 @@
             </div>
             <div class="col-2 p-0">
                 <div class="col-12">
-                    <a href="" class="card1"> 
+                    <a href="" class="card1" data-toggle="modal" data-target="#Export"> 
                         <span>
                             <span>
                                 <span>
@@ -144,7 +144,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                       <h3 class="modal-title" id="exampleModalLabel"><b>Create New Invoice</b></h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -153,17 +152,6 @@
                                   <div id="app">
                                     <div class="container-md">
                                       <div class="row-md">
-                                        <div class="col-md ">
-                                          <br>Buisness info<br>
-                                        </div>
-                                        <div class="col-md">
-                                          <b>Due on receipt</b><br>
-                                          <div class="row justify-content-center">
-                                          <div class="col-sm-6 col-xs-offset-3" >
-                                             <input class="form-control" type="date" id="DueDate" v-model="invoiceForm.DueDate">
-                                          </div> 
-                                          </div> 
-                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -185,6 +173,12 @@
                                           <input id="BillAmount" type="number" minlength=1,2 v-model="invoiceForm.BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
                                       </div>
                                   </div>
+                                  <div class="form-group mt-3 row">
+                                    <label class="col-form-label col-sm-3">Due on receipt:</label>
+                                          <div class="col-sm-9"> 
+                                             <input class="form-control" type="date" id="DueDate" v-model="invoiceForm.DueDate">
+                                           </div>
+                                        </div>
                                   <div class="form-group mt-3 row">	                                 
                                       <label class="col-form-label col-sm-3" for="Category">Category: </label>
                                       <div class="col-sm-9"> 
@@ -199,8 +193,8 @@
                                         </div>                                       
                                   </div>
                                   <div class="form-group mt-3 row">	
-                                    <div class="col-sm-9">                                  
-                                      <label for="one">Paid</label>
+                                      <div class="col-sm-9">                        
+                                      <label class="col-form-label col-sm-3" for="one">Paid</label>
                                       <input type="checkbox" id="one" v-model="invoiceForm.isPaid">
                                       <br> 
                                     </div>                                      
@@ -217,8 +211,49 @@
                           <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                       </div>
                 </div>
+                </div>
             </div>
-        </div>
+
+    	    <div class="modal fade" id="Export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <h3 class="modal-title" id="exampleModalLabel"><b>Export Data</b></h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12 well">
+                                <form>
+                                  <div id="app">
+                                    <div class="container-md">
+                                      <div class="row-md">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label class="col-form-label col-sm-6" for="Upcoming"><b>Upcoming bills:</b></label>
+                                      <div class="text-centar">
+                                      <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Download List of upcoming bills</a>
+                                  </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label class="col-form-label col-sm-6" for="History"><b>History:</b></label>
+                                      <div class="text-centar">
+                                      <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Download List of paid bills</a>
+                                  </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+                                  </div>
+                                  </form> 
+                              </div>
+                          </div>
+                      </div>
+                </div>
+                </div>
+                </div>
+        
     </div>
 </template>
 

@@ -5,9 +5,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <!-- <th scope="col">
+                         <!--<th scope="col">
                             Due Date
-                        </th> -->
+                        </th>  !-->
                         <th scope="col">
                             Client Name
                         </th>
@@ -24,9 +24,9 @@
                 </thead>
                 <tbody>
                     <tr :key="invoice.key" v-for="invoice in invoices">
-                        <!-- <td>
-                            {{invoice.DueDate}}
-                        </td> -->
+                        <!--<td>
+                             {{invoice.DueDate}} 
+                        </td> !-->
                         <td>
                             {{invoice.ClientName}}
                         </td>
@@ -35,6 +35,9 @@
                         </td>
                         <td>
                             {{invoice.BillAmount}}
+                        </td>
+                        <td>
+                            {{invoice.Category}}
                         </td>
                     </tr>
                 </tbody>
@@ -98,6 +101,7 @@ export default {
 		invoice(isPaid) {
             if (isPaid) {
                 this.$store.dispatch('invoice', {
+                   
                     ClientName: this.invoiceForm.ClientName,
                     BillName: this.invoiceForm.BillName,
                     BillAmount: this.invoiceForm.BillAmount,

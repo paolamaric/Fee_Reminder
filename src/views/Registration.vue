@@ -42,6 +42,8 @@
                 </div>
             </div>
         </div>
+
+
         <div id="layoutAuthentication_footer" _ngcontent-ghc-c106="">
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -201,7 +203,7 @@ export default {
 		};
 	},
 	methods: {
-		signup(isHost) {
+		signup(isHost) {{
 			// firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
 			// 	console.log('Uspjesna registracija');
 			// })
@@ -222,18 +224,8 @@ export default {
                     isHost: isHost
                     })
                 }
-            else {
-                this.$store.dispatch('signup', {
-                    name: this.registerForm.name,
-                    email: this.registerForm.email,
-                    adress: this.registerForm.adress,
-                    city: this.registerForm.city,
-                    zip: this.registerForm.zip,
-                    password: this.registerForm.password,
-                    isHost: isHost
-                    })
-            }
-            }       
+        }
+        }
 		},
 	};
 </script>
