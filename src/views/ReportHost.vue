@@ -1,6 +1,6 @@
 <template>
   <div class="small">
-    <h3> Report of Invoices by Categories </h3>
+    <h3> Report of paid and not paid invoices </h3>
     <bar :chart-data="invoiceCollection"></bar>
   </div>
 </template>
@@ -17,7 +17,7 @@ import { mapState } from 'vuex';
       return {
         invoiceCollection: {},
         counter: [
-        0,0,0,0,0,0
+        0,0,0
         ]
       }
     },
@@ -30,36 +30,24 @@ import { mapState } from 'vuex';
     },
     methods: {
       fillData () {
-        // console.log((this.invoices));
+        console.log((this.invoices.isPaid));
         // console.log((this.invoices[0]));
         for (var i = 0;i<this.invoices.length;i++) {
-          console.log(this.invoices[i].Category);
-          if (this.invoices[i].Category === "Membership fees") {
+          console.log(this.invoices[i].isPaid);
+          if (this.invoices[i].isPaid === true) {
             this.counter[0] = this.counter[0] + 1;
             }
-          else if (this.invoices[i].Category === "Utilities") {
+          else if (this.invoices[i].isPaid === "") {
             this.counter[1] = this.counter[1] + 1;
-            }
-          else if (this.invoices[i].Category === "Car&Moto") {
-            this.counter[2] = this.counter[2] + 1;
-            }
-          else if (this.invoices[i].Category === "Dining") {
-            this.counter[3] = this.counter[3] + 1;
-            }
-          else if (this.invoices[i].Category === "Rent") {
-            this.counter[4] = this.counter[4] + 1;
-            }
-          else if (this.invoices[i].Category === "Others") {
-            this.counter[5] = this.counter[5] + 1;
             }
           }
         this.invoiceCollection = {
-          labels: ["MembershipFees", "Utilities", "Car&Moto", "Dining", "Rent", "Others"],
+          labels: ["Paid", "Not paid"],
           datasets: [
             {
               label: 'Invoice',
               backgroundColor: '#17a2b8',
-              data: [ this.counter[0], this.counter[1], this.counter[2],this.counter[3],this.counter[4],this.counter[5], this.invoices.length]
+              data: [ this.counter[0], this.counter[1], this.invoices.length]
               }
             ]
           }

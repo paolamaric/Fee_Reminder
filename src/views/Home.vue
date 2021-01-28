@@ -33,7 +33,7 @@
           </div>
           <div class="col-4 p-0">
               <div class="col-11">
-                  <a href="/Reports" class="card2"> 
+                  <a href="/ReportHost" class="card2"> 
                       <span>
                           <span>
                               <span>

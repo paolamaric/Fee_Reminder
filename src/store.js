@@ -60,33 +60,31 @@ export default new Vuex.Store({
                 // router.push('/HomeClient');
             }
         },
-        fetchInvoice({commit}) {
+        async fetchInvoice({commit}) {
             let paidInvoices = [];
             let unpaidInvoices = [];
+            let allInvoices = [];
             console.log("U fetch Invoices")
-            fb.invoiceCollection.get().then((results) => {
+            await fb.invoiceCollection.get().then((results) => {
                 results.forEach((doc) => {
                     let data = doc.data();
-                    console.log("Ovo je data" + data);
                     let invoice = {
                         id: doc.id,
                         DueDate: data.DueDate,
                         ClientName: data.ClientName,
                         BillName: data.BillName,
                         BillAmount: data.BillAmount,
-                        Category: data.Category                    
+                        Category: data.Category,    
+                        isPaid: data.isPaid                
                         }
-                    console.log(invoice);
-                    console.log(data.isPaid);
-                    console.log(typeof(data.isPaid));
                     if (data.isPaid) {
                         paidInvoices.push(invoice);
+                        allInvoices.push(invoice);
                         }
                     else {
                         unpaidInvoices.push(invoice);
+                        allInvoices.push(invoice);
                         }
-                    console.log(paidInvoices);
-                    console.log(unpaidInvoices);
                     }) 
                 })
                 if (router.currentRoute.path === '/HistoryPaid') {
@@ -97,11 +95,10 @@ export default new Vuex.Store({
                     commit('setInvoices', unpaidInvoices); 
                     // window.location = '/list';
                     }
+                else if (router.currentRoute.path === '/ReportHost' && router.currentRoute.path === '/Reports' ){
+                    await commit('setInvoices', allInvoices);
+                }
                 },
-            // else {
-            //     window.location = '/list';
-            //     }
-                // router.push('/HomeClient');
         async logout ({ commit }) {
             await fb.auth.signOut();
             commit('setUserProfile',{});

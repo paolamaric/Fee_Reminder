@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-// import "firebase/analytics";
 
 var firebaseConfig = {
 
@@ -17,10 +16,6 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// firebase .analytics();
-
-// alias
-// Vue.prototype.$analytics = firebase.analytics();
 
 const db = firebase.firestore();
 const auth = firebase.auth();

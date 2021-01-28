@@ -64,28 +64,33 @@ const routes = [
   {
     path: '/Categories',
     name: 'Categories',
-    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/Categories.vue'),
+    component: () => import(/* webpackChunkName: "Categories" */ '../views/Categories.vue'),
    
   },
   {
     path: '/ClientsHost',
     name: 'ClientsHost',
-    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/ClientsHost.vue'),
+    component: () => import(/* webpackChunkName: "ClientsHost" */ '../views/ClientsHost.vue'),
    
   },
   {
     path: '/HistoryPaid',
     name: 'HistoryPaid',
-    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/HistoryPaid.vue'),
+    component: () => import(/* webpackChunkName: "HistoryPaid" */ '../views/HistoryPaid.vue'),
    
   },
   {
     path: '/Reports',
     name: 'Reports',
-    component: () => import(/* webpackChunkName: "ListOfUpcomingBills" */ '../views/Reports.vue'),
+    component: () => import(/* webpackChunkName: "Reports" */ '../views/Reports.vue'),
    
   },
-  
+  {
+    path: '/ReportHost',
+    name: 'ReportHost',
+    component: () => import(/* webpackChunkName: "ReportHost" */ '../views/ReportHost.vue'),
+   
+  },
 ]
 
 const router = new VueRouter({
