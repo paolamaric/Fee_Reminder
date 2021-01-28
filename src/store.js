@@ -87,6 +87,7 @@ export default new Vuex.Store({
                         }
                     }) 
                 })
+                // console.log("Napisi currentRoute " + router.currentRoute.path);
                 if (router.currentRoute.path === '/HistoryPaid') {
                     commit('setInvoices', paidInvoices);
                     // window.location = '/HistoryPaid';
@@ -95,9 +96,10 @@ export default new Vuex.Store({
                     commit('setInvoices', unpaidInvoices); 
                     // window.location = '/list';
                     }
-                else if (router.currentRoute.path === '/ReportHost' && router.currentRoute.path === '/Reports' ){
+                else if (router.currentRoute.path === '/ReportHost' || router.currentRoute.path === '/Reports' ){
+                    // console.log("U else if sa currentRoute za ReportHost i Reports");
                     await commit('setInvoices', allInvoices);
-                }
+                    }
                 },
         async logout ({ commit }) {
             await fb.auth.signOut();

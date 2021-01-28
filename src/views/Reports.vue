@@ -33,7 +33,6 @@ import { mapState } from 'vuex';
         // console.log((this.invoices));
         // console.log((this.invoices[0]));
         for (var i = 0;i<this.invoices.length;i++) {
-          console.log(this.invoices[i].Category);
           if (this.invoices[i].Category === "Membership fees") {
             this.counter[0] = this.counter[0] + 1;
             }
@@ -53,13 +52,25 @@ import { mapState } from 'vuex';
             this.counter[5] = this.counter[5] + 1;
             }
           }
+        for (var i = 0;i < this.counter.length;i++) {
+          console.log("this.counter u " + i + " = " + this.counter[i]);
+          if (i === 0) {
+            console.log("Nesto glupo");
+            this.topOfthePops = this.counter[i];
+            }
+          else if (this.topOfthePops < this.counter[i]) {
+            this.topOfthePops = this.counter[i];
+            }
+          }
+        this.topOfthePops++;
+        console.log(this.topOfthePops);
         this.invoiceCollection = {
           labels: ["MembershipFees", "Utilities", "Car&Moto", "Dining", "Rent", "Others"],
           datasets: [
             {
               label: 'Invoice',
               backgroundColor: '#17a2b8',
-              data: [ this.counter[0], this.counter[1], this.counter[2],this.counter[3],this.counter[4],this.counter[5], this.invoices.length]
+              data: [ this.counter[0], this.counter[1], this.counter[2],this.counter[3],this.counter[4],this.counter[5], this.topOfthePops]
               }
             ]
           }
@@ -71,6 +82,6 @@ import { mapState } from 'vuex';
 <style>
   .small {
     max-width: 600px;
-    margin:  150px auto;
+    margin:  2% auto;
   }
 </style>

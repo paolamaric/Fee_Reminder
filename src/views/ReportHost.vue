@@ -1,5 +1,5 @@
 <template>
-  <div class="small">
+  <div class="barChart">
     <h3> Report of paid and not paid invoices </h3>
     <bar :chart-data="invoiceCollection"></bar>
   </div>
@@ -30,10 +30,7 @@ import { mapState } from 'vuex';
     },
     methods: {
       fillData () {
-        console.log((this.invoices.isPaid));
-        // console.log((this.invoices[0]));
         for (var i = 0;i<this.invoices.length;i++) {
-          console.log(this.invoices[i].isPaid);
           if (this.invoices[i].isPaid === true) {
             this.counter[0] = this.counter[0] + 1;
             }
@@ -47,18 +44,19 @@ import { mapState } from 'vuex';
             {
               label: 'Invoice',
               backgroundColor: '#17a2b8',
-              data: [ this.counter[0], this.counter[1], this.invoices.length]
+              data: [ this.counter[0], this.counter[1], this.invoices.length, 0]
               }
             ]
           }
         },
+      }
     }
-  }
 </script>
 
 <style>
-  .small {
-    max-width: 600px;
-    margin:  150px auto;
+  .barChart {
+    max-width: 35%;
+    max-height: 600px;
+    margin: 2% auto;
   }
 </style>
