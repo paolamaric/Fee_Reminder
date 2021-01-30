@@ -158,7 +158,7 @@
                                   <div class="form-group row">
                                       <label class="col-form-label col-sm-3" for="ClientName" >To: </label>
                                       <div class="col-sm-9">
-                                          <input type="text" id="ClientName" v-model="invoiceForm.ClientName" placeholder="Enter Client Name Here..." class="form-control">
+                                          <input type="text" id="ClientName" v-model="invoiceForm.ClientName" placeholder="Enter Bill Name Here..." class="form-control">
                                       </div>
                                   </div>
                                   <div class="form-group mt-3 row">
@@ -234,13 +234,13 @@
                                   <div class="form-group row">
                                       <label class="col-form-label col-sm-6" for="Upcoming"><b>Upcoming bills:</b></label>
                                       <div class="text-centar">
-                                      <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Download List of upcoming bills</a>
+                                      <a href="../assets/List_of_upcoming_bills.xls" download>Download List of upcoming bills</a>
                                   </div>
                                   </div>
                                   <div class="form-group row">
                                       <label class="col-form-label col-sm-6" for="History"><b>History:</b></label>
                                       <div class="text-centar">
-                                      <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Download List of paid bills</a>
+                                      <a href="../assets/History_of_paid_bills.xls" download>Download List of paid bills</a>
                                   </div>
                                   </div>
                                   <div class="modal-footer">
