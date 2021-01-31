@@ -48,14 +48,13 @@ import { mapState } from 'vuex';
           else if (this.invoices[i].Category === "Rent") {
             this.counter[4] = this.counter[4] + 1;
             }
-          else if (this.invoices[i].Category === "Others") {
+          else if (this.invoices[i].Category === "Other") {
             this.counter[5] = this.counter[5] + 1;
             }
           }
         for (var i = 0;i < this.counter.length;i++) {
           console.log("this.counter u " + i + " = " + this.counter[i]);
           if (i === 0) {
-            console.log("Nesto glupo");
             this.topOfthePops = this.counter[i];
             }
           else if (this.topOfthePops < this.counter[i]) {
@@ -65,7 +64,7 @@ import { mapState } from 'vuex';
         this.topOfthePops++;
         console.log(this.topOfthePops);
         this.invoiceCollection = {
-          labels: ["MembershipFees", "Utilities", "Car&Moto", "Dining", "Rent", "Others"],
+          labels: ["MembershipFees", "Utilities", "Car&Moto", "Dining", "Rent", "Other"],
           datasets: [
             {
               label: 'Invoice',
