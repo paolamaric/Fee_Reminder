@@ -64,7 +64,7 @@ const routes = [
   {
     path: '/Categories',
     name: 'Categories',
-    component: () => import(/* webpackChunkName: "Categories" */ '../views/Categories.vue'),
+    component: () => import(/* webpackChunkName: "Categories" */ '../views/Categories/Categories.vue'),
    
   },
   {
@@ -93,32 +93,32 @@ const routes = [
   {
     path: '/MembershipFees',
     name: 'MembershipFees',
-    component: () => import(/* webpackChunkName: "MembershipFees" */ '../views/MembershipFees.vue'),
+    component: () => import(/* webpackChunkName: "MembershipFees" */ '../views/Categories/MembershipFees.vue'),
   },
   {
     path: '/Car_Moto',
     name: 'Car_Moto',
-    component: () => import(/* webpackChunkName: "Car_Moto" */ '../views/Car_Moto.vue'),
+    component: () => import(/* webpackChunkName: "Car_Moto" */ '../views/Categories/Car_Moto.vue'),
   },
   {
     path: '/Dining',
     name: 'Dining',
-    component: () => import(/* webpackChunkName: "Dining" */ '../views/Dining.vue'),
+    component: () => import(/* webpackChunkName: "Dining" */ '../views/Categories/Dining.vue'),
   },
   {
     path: '/Utilities',
     name: 'Utilities',
-    component: () => import(/* webpackChunkName: "Utilities" */ '../views/Utilities.vue'),
+    component: () => import(/* webpackChunkName: "Utilities" */ '../views/Categories/Utilities.vue'),
   },
   {
     path: '/Rent',
     name: 'Rent',
-    component: () => import(/* webpackChunkName: "Rent" */ '../views/Rent.vue'),
+    component: () => import(/* webpackChunkName: "Rent" */ '../views/Categories/Rent.vue'),
   },
   {
     path: '/Other',
     name: 'Other',
-    component: () => import(/* webpackChunkName: "Other" */ '../views/Other.vue'),
+    component: () => import(/* webpackChunkName: "Other" */ '../views/Categories/Other.vue'),
   },
 ]
 

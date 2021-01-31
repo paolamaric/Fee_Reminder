@@ -19,15 +19,15 @@
                 <div class="mt-5">
                   <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
                   <h3 class="h4 mb-2">Članovi tima</h3>
-                  <p class="text-muted mb-0">Anamarija Jozić, Paola Marić i Marta Pokorni</p>
+                  <p class="text-muted mb-0">Paola Marić i Marta Pokorni</p>
                 </div>
               </div>
               <div class="col-lg-3 col-md-6 text-center">
                 <div class="mt-5">
                   <i class="fas fa-4x fa-globe text-primary mb-4"></i>
                   <h3 class="h4 mb-2">Kratki opis funkcionalnosti aplikacije:</h3>
-                  <p class="text-muted mb-0">Fee Reminder je aplikacija koja pomaže korisniku i pružatelju usluga pri vođenju evidencije o plaćanju članarina.
-                  Korisnicima usluga šalje podsjetnike kada treba uplatiti članarinu i za koji mjesec su uplatili, a pružatelju usluga služi kao evidencija uplata.
+                  <p class="text-muted mb-0">Fee Reminder je aplikacija koja pomaže korisniku i pružatelju usluga pri vođenju evidencije o plaćanju računa.
+                  Korisnici prate svoje uplate, uz dodavanje novih, dok pružatelju usluga služi kao evidencija uplata.
                   Softver istovremeno može koristiti više udruga/korisnika, SaaS princip. </p>
                 </div>
               </div>
@@ -35,9 +35,9 @@
                 <div class="mt-5">
                   <i class="fas fa-4x fa-heart text-primary mb-4"></i>
                   <h3 class="h4 mb-2">Zaduženje po članu tima</h3>
-                  <p class="text-muted mb-0">Anamarija Jozić - login/registracija i početna stranica <br> 
-                  Paola Marić - html/css/js za hosta <br>
-                  Marta Pokorni - html/css/js za usera</p>
+                  <p class="text-muted mb-0"><br> 
+                  Paola Marić - html/css/js za usera <br>
+                  Marta Pokorni - html/css/js za hosta, home</p>
                 </div>
               </div>
             </div>
