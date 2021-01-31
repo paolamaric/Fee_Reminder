@@ -89,7 +89,36 @@ const routes = [
     path: '/ReportHost',
     name: 'ReportHost',
     component: () => import(/* webpackChunkName: "ReportHost" */ '../views/ReportHost.vue'),
-   
+  },
+  {
+    path: '/MembershipFees',
+    name: 'MembershipFees',
+    component: () => import(/* webpackChunkName: "MembershipFees" */ '../views/MembershipFees.vue'),
+  },
+  {
+    path: '/Car_Moto',
+    name: 'Car_Moto',
+    component: () => import(/* webpackChunkName: "Car_Moto" */ '../views/Car_Moto.vue'),
+  },
+  {
+    path: '/Dining',
+    name: 'Dining',
+    component: () => import(/* webpackChunkName: "Dining" */ '../views/Dining.vue'),
+  },
+  {
+    path: '/Utilities',
+    name: 'Utilities',
+    component: () => import(/* webpackChunkName: "Utilities" */ '../views/Utilities.vue'),
+  },
+  {
+    path: '/Rent',
+    name: 'Rent',
+    component: () => import(/* webpackChunkName: "Rent" */ '../views/Rent.vue'),
+  },
+  {
+    path: '/Other',
+    name: 'Other',
+    component: () => import(/* webpackChunkName: "Other" */ '../views/Other.vue'),
   },
 ]
 

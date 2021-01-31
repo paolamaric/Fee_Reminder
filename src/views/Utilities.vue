@@ -1,6 +1,6 @@
 <template>
     <div class="cointainer">
-    <h2 class="my-4"> List of Upcoming Bills </h2>
+    <h2 class="my-4"> List of Invoices for Utilities Category  </h2>
         <div class="row my-4"> 
             <table class="table">
                 <thead>
@@ -16,9 +16,6 @@
                         </th>
                         <th scope="col">
                             Bill Amount
-                        </th>
-                        <th scope="col">
-                            Category
                         </th>
                         <th scope="col">
                             Paid
@@ -40,7 +37,7 @@
                             {{invoice.BillAmount}}
                         </td>
                         <td>
-                            {{invoice.Category}}
+                            {{invoice.isPaid}}
                         </td>
                     </tr>
                 </tbody>
@@ -81,73 +78,28 @@ import { mapState } from 'vuex';
 
 
 export default {
-    name:'ListOfUpcomingBills',
-    // props: ['Invoices'],
-    // computed: {
-    //     postedFromNow () {
-    //         return moment(this.Invoices.time).fromNow();
-    //         }
-    //     },  
+    name:'Utilities', 
     data () {
         return {
-            invoices: [],
+            Utilities: [],
             DueDate:'',
             ClientName:'',
             BillName:'',
             BillAmount:'',
             Category: '',
-            isPaid,
             };
         },
-    // mounted () {
-    //     this.getInvoices();
-    //     },
     computed: {
       ...mapState(['invoices'])
         },
-    mounted () {
-        this.$store.dispatch('fetchInvoice');
-        },
-    methods: {
-		// invoice(isPaid) {
-        //     if (this.isPaid) {
-        //         this.$store.dispatch('invoice', {
-        //             ClientName: this.invoiceForm.ClientName,
-        //             BillName: this.invoiceForm.BillName,
-        //             BillAmount: this.invoiceForm.BillAmount,
-        //             Category: this.invoiceForm.Category,
-        //             isPaid: isPaid
-        //             })
-        //         }
-        //     else {
-        //         this.$store.dispatch('invoice', {
-        //             DueDate: this.invoiceForm.DueDate,
-        //             ClientName: this.invoiceForm.ClientName,
-        //             BillName: this.invoiceForm.BillName,
-        //             BillAmount: this.invoiceForm.BillAmount,
-        //             Category: this.invoiceForm.Category,
-        //             isPaid: isPaid
-        //             })
-        //     }
-            // },       
-        getInvoice () {
-            let invoices = [];
-            fb.invoiceCollection.get().then((results) => {
-                results.forEach((doc) => {
-                    let data = doc.data();
-                    let invoice = {
-                        id: doc.id,
-                        DueDate: data.DueDate,
-                        ClientName: data.ClientName,
-                        BillName: data.BillName,
-                        BillAmount: data.BillAmount,
-                        Category: data.Category                    
-                        }
-                    invoices.push(invoice);
-                    }) 
-                })
-            console.log("Firebase dohvat")
-            },
+    async mounted () {
+        await this.$store.dispatch('fetchInvoice');
+        for (var i = 0;i<this.invoices.length;i++) {
+            if (!("Utilities" == this.invoices[i].Category)){
+                this.invoices.splice(i, 1);
+                i--;
+            }
         }
+        },
     }
 </script> 

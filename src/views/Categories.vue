@@ -6,7 +6,7 @@
     <div class="row my-4">
         <div class="col-4 p-0">
             <div class="col-11">
-                <a href="" class="card3"> 
+                <a href="/Car_Moto" class="card3"> 
                     <span>
                         <span>
                             <span>
@@ -21,11 +21,11 @@
         </div>
         <div class="col-4 p-0">
             <div class="col-11">
-                <a href="" class="card3"> 
+                <a href="/MembershipFees" class="card3"> 
                     <span>
                         <span>
                             <span>
-                                <i class="fas fa-5x fa-swimmer" text-primary mb-4></i>
+                                <i class="fas fa-4x fa-swimmer" text-primary mb-4></i>
                                 <hr>
                                 <h5> Membership fees </h5>
                             </span>
@@ -36,7 +36,7 @@
         </div>
         <div class="col-4 p-0">
             <div class="col-11">
-                <a href="" class="card3"> 
+                <a href="/Dining" class="card3"> 
                     <span>
                         <span>
                             <span>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-4 p-0">
             <div class="col-11">
-                <a href="" class="card3"> 
+                <a href="/Rent" class="card3"> 
                     <span>
                         <span>
                             <span>
@@ -66,7 +66,7 @@
         </div>
         <div class="col-4 p-0">
             <div class="col-11">
-                <a href="" class="card3"> 
+                <a href="/Utilities" class="card3"> 
                     <span>
                         <span>
                             <span>
@@ -81,7 +81,7 @@
         </div>
         <div class="col-4 p-0">
             <div class="col-11">
-                <a href="" class="card3"> 
+                <a href="/Other" class="card3"> 
                     <span>
                         <span>
                             <span>

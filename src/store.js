@@ -96,7 +96,7 @@ export default new Vuex.Store({
                     commit('setInvoices', unpaidInvoices); 
                     // window.location = '/list';
                     }
-                else if (router.currentRoute.path === '/ReportHost' || router.currentRoute.path === '/Reports' ){
+                else {
                     // console.log("U else if sa currentRoute za ReportHost i Reports");
                     await commit('setInvoices', allInvoices);
                     }
