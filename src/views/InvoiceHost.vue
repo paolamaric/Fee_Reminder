@@ -1,10 +1,8 @@
 <template>
-    <div class="cointainer">
-        <div class="header">
-            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#InvoiceHost">Add New Invoices</button>
-        </div> 
+    <div class="cointainer-fluid">
+        <button type="button" class="my-4 btn btn-primary mt-3" data-toggle="modal" data-target="#InvoiceHost">Add New Invoices</button>
         <h2 class="my-4"> List of Invoices </h2>
-            <div class="row my-4"> 
+            <div class="row" style="margin: auto"> 
                 <table class="table">
                     <thead>
                         <tr>
@@ -23,10 +21,12 @@
                             <th scope="col">
                                 Paid
                             </th>
+                            <th scope="col">
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr :key="invoice.key" v-for="invoice in invoiceHost">
+                        <tr :key="invoice.key" v-for="invoice in invoices">
                             <td>
                                 {{invoice.ClientName}}
                             </td>
@@ -39,8 +39,11 @@
                             <td>
                                 {{invoice.DueDate}}
                             </td>
-                            <td>
-                                {{invoice.isPaid}}
+                            <td v-if="invoice.isPaid">
+                                Yes
+                            </td>
+                            <td v-else>
+                                No
                             </td>
                         </tr>
                     </tbody>
@@ -83,12 +86,12 @@
                                           <input id="BillAmount" type="number" minlength=1,2 v-model="BillAmount" placeholder="e.g. 150,00 kn" class="form-control">
                                       </div>
                                   </div>
-                                  <div class="form-group mt-3 row">
-                                    <label class="col-form-label col-sm-3" for="DueDate">Due on receipt:</label>
-                                          <div class="col-sm-9"> 
-                                             <input class="form-control" type="date" id="DueDate">
-                                           </div>
+                                    <div class="form-group mt-3 row">
+                                        <label class="col-form-label col-sm-3" for="DueDate">Due on receipt:</label>
+                                        <div class="col-sm-9"> 
+                                            <input class="form-control" type="date" id="DueDate" v-model="DueDate">
                                         </div>
+                                    </div>
                                   <div class="text-right">
                                       <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
                                   </div>
@@ -99,7 +102,7 @@
                                       <br> 
                                     </div>                                      
                                   </div>
-                                  <button type="button" @click="postNewInvoiceHost()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
+                                  <button type="button" @click="invoiceHost()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
                                   </form> 
                                 </div>
                             </div>
@@ -117,71 +120,43 @@
 
 import moment from 'moment';
 import store from '@/store';
-import { db } from '@/firebase';
-import { firebase } from '@/firebase';
-import { invoicesHostColl } from '@/firebase';
+import * as fb from '@/firebase'
+import { invoiceHostColl } from '@/firebase';
+import { mapState } from 'vuex';
 
 export default {
     name:'InvoiceHost',
-    components: {
-    },
     data () {
         return {
-            invoiceHost: [],
             DueDate:'',
             ClientName:'',
             BillName:'',
             BillAmount:'',
-            isPaid:'',
+            isPaid: '',
             };
         },
+    computed: {
+      ...mapState(['invoices'])
+        },
     mounted () {
-        this.getInvoiceHost();
+        this.$store.dispatch('fetchInvoiceHost');
         },
     methods: {
-        postNewInvoiceHost () {
-          const DueDate= this.DueDate
-          const ClientName= this.ClientName
-          const BillName= this.BillName
-          const BillAmount = this.BillAmount
-
-          db.collection("InvoicesHost").add({
-              Date: DueDate,
-              Client: ClientName,
-              Bill: BillName,
-              Amount: BillAmount,
-          })
-          .then ((doc)=>{
-              console.log("Spremljeno ", doc);
-              this.DueDate ="";
-              this.ClientName = "";
-              this.BillName = "";
-              this.BillAmount = "";
-          })
-          .catch ((e)=> {
-              console.error(e);
-          });
-        },
-        getInvoiceHost () {
-            let invoicesHost = [];
-            invoicesHostColl.get().then((results) => {
-                results.forEach((doc) => {
-                    let data = doc.data();
-                    let invoiceHost = {
-                        id: doc.id,
-                        DueDate: data.Date,
-                        ClientName: data.Client,
-                        BillName: data.Bill,
-                        BillAmount: data.Amount,  
-                        isPaid: data.isPaid                 
-                        }
-                    this.invoiceHost.push(invoiceHost);
-                    })
+        invoiceHost() {
+            if (!this.isPaid) {
+                this.isPaid = false;
+                console.log(this.isPaid);
+                }
+            this.$store.dispatch('invoiceHost', {
+                DueDate: this.DueDate,
+                ClientName: this.ClientName,
+                BillName: this.BillName,
+                BillAmount: this.BillAmount,
+                isPaid: this.isPaid
                 })
-            console.log("Firebase dohvat")
-        }, 
+            },
+        }
     }
-}
 </script>
 
 <style lang="scss">
@@ -204,4 +179,5 @@ export default {
   text-decoration: none;
   width: 100%;
 }
+
 </style> 

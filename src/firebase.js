@@ -23,8 +23,8 @@ const auth = firebase.auth();
 const usersCollection = db.collection('Users');
 const invoiceCollection = db.collection('Invoices');
 const clientsCollection = db.collection('Clients');
-const invoicesHostColl = db.collection('InvoicesHost')
+const invoiceHostColl = db.collection('InvoicesHost');
 
 export {
-    firebase, db, usersCollection, auth, invoiceCollection, clientsCollection, invoicesHostColl
+    firebase, db, auth, usersCollection, invoiceCollection, clientsCollection, invoiceHostColl
     };

@@ -81,13 +81,13 @@ export default {
     name:'ListOfUpcomingBills',
     data () {
         return {
-            invoices: [],
-            DueDate:'',
-            ClientName:'',
-            BillName:'',
-            BillAmount:'',
-            Category: '',
-            isPaid,
+            // invoices: [],
+            // DueDate:'',
+            // ClientName:'',
+            // BillName:'',
+            // BillAmount:'',
+            // Category: '',
+            // isPaid,
             };
         },
     computed: {
@@ -96,25 +96,25 @@ export default {
     mounted () {
         this.$store.dispatch('fetchInvoice');
         },
-    methods: {    
-        getInvoice () {
-            let invoices = [];
-            fb.invoiceCollection.get().then((results) => {
-                results.forEach((doc) => {
-                    let data = doc.data();
-                    let invoice = {
-                        id: doc.id,
-                        DueDate: data.DueDate,
-                        ClientName: data.ClientName,
-                        BillName: data.BillName,
-                        BillAmount: data.BillAmount,
-                        Category: data.Category,                   
-                        }
-                    invoices.push(invoice);
-                    }) 
-                })
-            console.log("Firebase dohvat")
-            },
-        }
+    // methods: {    
+    //     getInvoice () {
+    //         let invoices = [];
+    //         fb.invoiceCollection.get().then((results) => {
+    //             results.forEach((doc) => {
+    //                 let data = doc.data();
+    //                 let invoice = {
+    //                     id: doc.id,
+    //                     DueDate: data.DueDate,
+    //                     ClientName: data.ClientName,
+    //                     BillName: data.BillName,
+    //                     BillAmount: data.BillAmount,
+    //                     Category: data.Category,                   
+    //                     }
+    //                 invoices.push(invoice);
+    //                 }) 
+    //             })
+    //         console.log("Firebase dohvat")
+    //         },
+    //     }
     }
 </script> 
