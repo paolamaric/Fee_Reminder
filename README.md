@@ -13,14 +13,13 @@ https://ntankovic.unipu.hr/pi
 doc.dr.sc. Nikola Tanković (https://ntankovic.unipu.hr) i univ.bacc.inf.Toni Starčić
                 
 #Članovi tima:
-Anamarija Jozić, Paola Marić i Marta Pokorni
+Paola Marić i Marta Pokorni
                 
 #Kratki opis funkcionalnosti aplikacije:
-Fee Reminder je aplikacija koja pomaže korisniku i pružatelju usluga pri vođenju evidencije o plaćanju članarina.
-Korisnicima usluga šalje podsjetnike kada treba uplatiti članarinu i za koji mjesec su uplatili, a pružatelju usluga služi kao evidencija uplata.
+Fee Reminder je aplikacija koja pomaže korisniku i pružatelju usluga pri vođenju evidencije o plaćanju računa.
+Korisnicima usluga predstavlja podsjetnik kada treba uplatiti dugovanja i za koji mjesec, a pružatelju usluga služi kao evidencija uplata.
 Softver istovremeno može koristiti više udruga/korisnika, SaaS princip. 
               
 #Zaduženje po članu tima
-Anamarija Jozić - login/registracija i početna stranica 
-Paola Marić - html/css/js za hosta 
-Marta Pokorni - html/css/js za usera
+Paola Marić - html/css/js za usera, home page 
+Marta Pokorni - html/css/js za hosta, login/registracija
