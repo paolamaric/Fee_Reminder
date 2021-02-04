@@ -90,7 +90,7 @@ export default new Vuex.Store({
                 // console.log("Napisi currentRoute " + router.currentRoute.path);
                 if (router.currentRoute.path === '/HistoryPaid') {
                     commit('setInvoices', paidInvoices);
-                    // window.location = '/HistoryPaid';
+                    //window.location = '/HistoryPaid';
                     }
                 else if (router.currentRoute.path === '/list') {
                     commit('setInvoices', unpaidInvoices); 
@@ -124,6 +124,7 @@ export default new Vuex.Store({
                 }
             else {
                 await fb.invoiceCollection.add({
+                    DueDate: form.DueDate,
                     ClientName: form.ClientName,
                     BillName: form.BillName,
                     BillAmount: form.BillAmount,

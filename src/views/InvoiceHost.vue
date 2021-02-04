@@ -92,7 +92,13 @@
                                   <div class="text-right">
                                       <a href="http://www.hok-cba.hr/hr/upute-o-na%C4%8Dinu-ispunjavanja-uplatnica">Payment Instructions</a>
                                   </div>
-                                  <button type="button" class="btn btn-secondary btn-sm mt-3">Mark Paid</button>
+                                    <div class="form-group mt-3 row">	
+                                      <div class="col-sm-9">                        
+                                      <label class="col-form-label col-sm-3" for="one">Paid</label>
+                                      <input type="checkbox" id="one" v-model="isPaid">
+                                      <br> 
+                                    </div>                                      
+                                  </div>
                                   <button type="button" @click="postNewInvoiceHost()" class="btn btn-primary btn-sm mt-3">Add Invoice</button>
                                   </form> 
                                 </div>
@@ -126,11 +132,12 @@ export default {
             ClientName:'',
             BillName:'',
             BillAmount:'',
+            isPaid:'',
             };
         },
     mounted () {
         this.getInvoiceHost();
-    },
+        },
     methods: {
         postNewInvoiceHost () {
           const DueDate= this.DueDate
@@ -165,7 +172,8 @@ export default {
                         DueDate: data.Date,
                         ClientName: data.Client,
                         BillName: data.Bill,
-                        BillAmount: data.Amount,                   
+                        BillAmount: data.Amount,  
+                        isPaid: data.isPaid                 
                         }
                     this.invoiceHost.push(invoiceHost);
                     })

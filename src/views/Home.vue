@@ -256,6 +256,87 @@
     </div>
 </template>
 
+<script>
+import moment from 'moment';
+import store from '@/store';
+import { db } from '@/firebase';
+import { firebase } from '@/firebase';
+import { mapState } from 'vuex';
+import { invoiceCollection } from '@/firebase';
+
+export default {
+    name:'Home',
+    components: {
+    }, 
+    data () {
+      return {
+        isHostNow:'',
+        invoiceForm: {
+          DueDate:'',
+          ClientName:'',
+          BillName:'',
+          BillAmount:'',
+          Category: '',
+          isPaid: '',
+        }
+      };
+    },
+    computed: {
+    ...mapState(['userProfile'])
+      },
+    methods: {
+      postNewInvoice() {
+          const DueDate= this.DueDate
+          const ClientName= this.ClientName
+          const BillName= this.BillName
+          const BillAmount = this.BillAmount
+          const Category = this.Category
+
+          db.collection("Invoices").add({
+              Date: DueDate,
+              Client: ClientName,
+              Bill: BillName,
+              Amount: BillAmount,
+              Category: Category,
+          })
+          .then ((doc)=>{
+              console.log("Spremljeno ", doc);
+              this.DueDate ="";
+              this.ClientName = "";
+              this.BillName = "";
+              this.BillAmount = "";
+              this.Category = "";
+          })
+          .catch ((e)=> {
+              console.error(e);
+          });
+      },
+      invoice() {
+        if (this.invoiceForm.isPaid) {
+          this.$store.dispatch('invoice', {
+            DueDate: this.invoiceForm.DueDate,
+            ClientName: this.invoiceForm.ClientName,
+            BillName: this.invoiceForm.BillName,
+            BillAmount: this.invoiceForm.BillAmount,
+            Category: this.invoiceForm.Category,
+            isPaid: this.invoiceForm.isPaid
+            })
+          }
+        else {
+            this.$store.dispatch('invoice', {
+              DueDate: this.invoiceForm.DueDate,
+              ClientName: this.invoiceForm.ClientName,
+              BillName: this.invoiceForm.BillName,
+              BillAmount: this.invoiceForm.BillAmount,
+              Category: this.invoiceForm.Category,
+              isPaid: this.invoiceForm.isPaid
+            })
+          }
+        },       
+    }
+  }
+</script>
+
 <style lang="scss">
 
 // Normalize/Reset only elements used
@@ -461,95 +542,3 @@ body {
   }
 
 </style>
-
-<script>
-import moment from 'moment';
-import store from '@/store';
-import { db } from '@/firebase';
-import { firebase } from '@/firebase';
-import { mapState } from 'vuex';
-import { invoiceCollection } from '@/firebase';
-
-export default {
-    name:'Home',
-    components: {
-    },
-    data () {
-      return {
-        isHostNow:'',
-        invoiceForm: {
-          DueDate:'',
-          ClientName:'',
-          BillName:'',
-          BillAmount:'',
-          Category: '',
-          isPaid: '',
-        }
-      };
-    },
-    // mounted () {
-    //   let isHostNow 
-    //   firebase.auth().onAuthStateChanged(async (user) => {
-    //     if (user) {
-    //       console.log("Samo da vidim");
-    //       await db.collection('Users').doc(user.uid).get().then((result)=>{
-    //         store.isHostNow = result.data().isHost;
-    //         });
-    //       }
-    //     });
-    //   console.log(store.isHostNow);
-    // },
-    computed: {
-    ...mapState(['userProfile'])
-      },
-    methods: {
-      postNewInvoice() {
-          const DueDate= this.DueDate
-          const ClientName= this.ClientName
-          const BillName= this.BillName
-          const BillAmount = this.BillAmount
-          const Category = this.Category
-
-          db.collection("Invoices").add({
-              Date: DueDate,
-              Client: ClientName,
-              Bill: BillName,
-              Amount: BillAmount,
-              Category: Category,
-          })
-          .then ((doc)=>{
-              console.log("Spremljeno ", doc);
-              this.DueDate ="";
-              this.ClientName = "";
-              this.BillName = "";
-              this.BillAmount = "";
-              this.Category = "";
-          })
-          .catch ((e)=> {
-              console.error(e);
-          });
-      },
-      invoice() {
-        if (this.invoiceForm.isPaid) {
-          this.$store.dispatch('invoice', {
-            DueDate: this.invoiceForm.DueDate,
-            ClientName: this.invoiceForm.ClientName,
-            BillName: this.invoiceForm.BillName,
-            BillAmount: this.invoiceForm.BillAmount,
-            Category: this.invoiceForm.Category,
-            isPaid: this.invoiceForm.isPaid
-            })
-          }
-        else {
-            this.$store.dispatch('invoice', {
-              ClientName: this.invoiceForm.ClientName,
-              BillName: this.invoiceForm.BillName,
-              BillAmount: this.invoiceForm.BillAmount,
-              Category: this.invoiceForm.Category,
-              isPaid: this.invoiceForm.isPaid
-            })
-          }
-        },       
-    }
-  }
-</script>

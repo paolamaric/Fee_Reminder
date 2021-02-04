@@ -33,21 +33,6 @@
   import FeeNavbar from './components/navbar.vue';
   import { firebase } from '@/firebase';
   import router from '@/router';
-
-  // firebase.auth().onAuthStateChanged((user) => {
-  //   if (user) {
-  //     console.log("*", user.email);
-  //     store.currentUser = user.email;
-  //     } 
-    // else {
-    //   console.log('No user');
-    //   store.currentUser = null;
-    //   if(router.name !== 'Login'){
-    //     // router.push({ name: 'Login' });
-    //     window.location = 'about';
-    //     }
-      // }
-    // });
   export default {
     name:'App',
     components: {
@@ -58,12 +43,5 @@
         store,
         };
       }
-    // methods: {
-    //   logout() {
-    //     firebase.auth().signOut().then(() => {
-    //       this.$router.replace({ name: 'Login' });
-    //       });
-    //     }
-    //   }
   }
 </script>

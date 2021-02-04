@@ -20,9 +20,6 @@
                         <th scope="col">
                             Category
                         </th>
-                        <th scope="col">
-                            Paid
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,12 +79,6 @@ import { mapState } from 'vuex';
 
 export default {
     name:'ListOfUpcomingBills',
-    // props: ['Invoices'],
-    // computed: {
-    //     postedFromNow () {
-    //         return moment(this.Invoices.time).fromNow();
-    //         }
-    //     },  
     data () {
         return {
             invoices: [],
@@ -99,37 +90,13 @@ export default {
             isPaid,
             };
         },
-    // mounted () {
-    //     this.getInvoices();
-    //     },
     computed: {
       ...mapState(['invoices'])
         },
     mounted () {
         this.$store.dispatch('fetchInvoice');
         },
-    methods: {
-		// invoice(isPaid) {
-        //     if (this.isPaid) {
-        //         this.$store.dispatch('invoice', {
-        //             ClientName: this.invoiceForm.ClientName,
-        //             BillName: this.invoiceForm.BillName,
-        //             BillAmount: this.invoiceForm.BillAmount,
-        //             Category: this.invoiceForm.Category,
-        //             isPaid: isPaid
-        //             })
-        //         }
-        //     else {
-        //         this.$store.dispatch('invoice', {
-        //             DueDate: this.invoiceForm.DueDate,
-        //             ClientName: this.invoiceForm.ClientName,
-        //             BillName: this.invoiceForm.BillName,
-        //             BillAmount: this.invoiceForm.BillAmount,
-        //             Category: this.invoiceForm.Category,
-        //             isPaid: isPaid
-        //             })
-        //     }
-            // },       
+    methods: {    
         getInvoice () {
             let invoices = [];
             fb.invoiceCollection.get().then((results) => {
@@ -141,7 +108,7 @@ export default {
                         ClientName: data.ClientName,
                         BillName: data.BillName,
                         BillAmount: data.BillAmount,
-                        Category: data.Category                    
+                        Category: data.Category,                   
                         }
                     invoices.push(invoice);
                     }) 

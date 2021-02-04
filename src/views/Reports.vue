@@ -30,8 +30,6 @@ import { mapState } from 'vuex';
     },
     methods: {
       fillData () {
-        // console.log((this.invoices));
-        // console.log((this.invoices[0]));
         for (var i = 0;i<this.invoices.length;i++) {
           if (this.invoices[i].Category === "Membership fees") {
             this.counter[0] = this.counter[0] + 1;
